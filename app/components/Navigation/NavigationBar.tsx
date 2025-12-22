@@ -40,13 +40,13 @@ export default function Sidebar() {
     return (
         <aside className="w-64 h-screen border-r bg-white flex flex-col">
             <div className="flex flex-col items-center py-6 border-b">
-                <Image
-                    src="/avatar.jpg"
+                {/* <Image
+                    src=""
                     alt="profile"
                     width={96}
                     height={96}
                     className="rounded-full"
-                />
+                /> */}
                 <span className="mt-3 font-medium text-gray-800">
                     محمد درستکار
                 </span>

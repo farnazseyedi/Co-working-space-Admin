@@ -1,6 +1,5 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/theme" layer(theme);
-@font-face { font-family: 'Vazirmatn'; src: url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap'); }
 /* .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

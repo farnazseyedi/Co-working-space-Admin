@@ -1,3 +1,4 @@
+// DaySlider.tsx
 "use client";
 
 import { useRef } from "react";
@@ -16,44 +17,37 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <div className="flex h-[96px] w-full overflow-hidden rounded-b-md shadow-md">
-      <button
-        onClick={() => swiperRef.current?.slideNext()}
-        className="h-full w-[48px] bg-orange-200 text-white hover:bg-orange-300 transition flex items-center justify-center rounded-none"
-      >
-        ›
-      </button>
+    <div className="flex w-full overflow-hidden rounded-b-md shadow-md">
+      <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+        <button onClick={() => swiperRef.current?.slidePrev()} className="text-white hover:text-gray-100 transition text-lg">‹</button>
+      </div>
 
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        slidesPerView={7}
-        spaceBetween={8}
+        spaceBetween={6}
         dir="rtl"
-        className="flex-1"
+        className="flex-1 py-2"
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          420: { slidesPerView: 2 },
+          480: { slidesPerView: 2 },
+          534: { slidesPerView: 3 },
+          640: { slidesPerView: 4 },
+          768: { slidesPerView: 5 },
+          1024: { slidesPerView: 6 },
+          1280: { slidesPerView: 7 },
+        }}
       >
         {days.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col items-center relative">
-              <DayItem
-                item={item}
-                active={index === activeIndex}
-                onClick={() => setActiveIndex(index)}
-              />
-              {index !== days.length - 1 && (
-                <div className="absolute right-0 top-0 h-full border-r border-gray-300" />
-              )}
-            </div>
+          <SwiperSlide key={index} className="flex items-stretch border-r last:border-r-0 border-gray-300">
+            <DayItem item={item} active={index === activeIndex} onClick={() => setActiveIndex(index)} />
           </SwiperSlide>
-
         ))}
       </Swiper>
 
-      <button
-        onClick={() => swiperRef.current?.slidePrev()}
-        className="h-full w-[48px] bg-orange-200 text-white hover:bg-orange-300 transition flex items-center justify-center rounded-none"
-      >
-        ‹
-      </button>
+      <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+        <button onClick={() => swiperRef.current?.slideNext()} className="text-white hover:text-gray-100 transition text-lg">›</button>
+      </div>
     </div>
   );
 }
