@@ -1,4 +1,3 @@
-// data/days.ts
 export type DayItem = {
     date: string;
     day: string;
@@ -7,18 +6,18 @@ export type DayItem = {
 };
 
 export const days: DayItem[] = [
-    { date: "۰۷/۱۵", day: "سه‌شنبه", status: "available", seats: 9 },
-    { date: "۰۷/۱۶", day: "چهارشنبه", status: "available", seats: 20 },
-    { date: "۰۷/۱۷", day: "پنجشنبه", status: "available", seats: 11 },
-    { date: "۰۷/۱۸", day: "جمعه", status: "holiday" },
-    { date: "۰۷/۱۹", day: "شنبه", status: "available", seats: 3 },
-    { date: "۰۷/۲۰", day: "یکشنبه", status: "full" },
-    { date: "۰۷/۲۱", day: "دوشنبه", status: "full" },
-    { date: "۰۷/۱۵", day: "سه‌شنبه", status: "available", seats: 9 },
-    { date: "۰۷/۱۶", day: "چهارشنبه", status: "available", seats: 20 },
-    { date: "۰۷/۱۷", day: "پنجشنبه", status: "available", seats: 11 },
-    { date: "۰۷/۱۸", day: "جمعه", status: "holiday" },
-    { date: "۰۷/۱۹", day: "شنبه", status: "available", seats: 3 },
-    { date: "۰۷/۲۰", day: "یکشنبه", status: "full" },
-    { date: "۰۷/۲۱", day: "دوشنبه", status: "full" },
+    { date: "07/15", day: "سه‌شنبه", status: "available", seats: 9 },
+    { date: "07/16", day: "چهارشنبه", status: "available", seats: 20 },
+    { date: "07/17", day: "پنجشنبه", status: "available", seats: 11 },
+    { date: "07/18", day: "جمعه", status: "holiday" },
+    { date: "07/19", day: "شنبه", status: "available", seats: 3 },
+    { date: "07/20", day: "یکشنبه", status: "full" },
+    { date: "07/21", day: "دوشنبه", status: "full" },
+    { date: "07/22", day: "سه‌شنبه", status: "available", seats: 9 },
+    { date: "07/23", day: "چهارشنبه", status: "available", seats: 20 },
+    { date: "07/24", day: "پنجشنبه", status: "available", seats: 11 },
+    { date: "07/25", day: "جمعه", status: "holiday" },
+    { date: "07/26", day: "شنبه", status: "available", seats: 3 },
+    { date: "07/27", day: "یکشنبه", status: "full" },
+    { date: "07/28", day: "دوشنبه", status: "full" },
 ];

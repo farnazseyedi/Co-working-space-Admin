@@ -1,4 +1,5 @@
 import { DayItem as DayItemType } from "../../data/days";
+import { toPersianNumber } from "../../utils/convertNumber";
 
 type Props = {
     item: DayItemType;
@@ -11,16 +12,18 @@ export default function DayItem({ item, active, onClick }: Props) {
         <button
             onClick={onClick}
             className={`
-                w-full px-3 py-3 text-center transition
-                ${active ? " border border-orange-500 rounded-md" : "hover:bg-orange-50"}
-            `}
+        w-full px-3 py-3 text-center transition
+        ${active ? " border border-orange-500 rounded-md" : "hover:bg-orange-50"}
+      `}
         >
             <div className="flex flex-col items-center gap-1 sm:gap-2">
-                <div className="text-sm sm:text-md text-gray-600">{item.day}-{item.date}</div>
+                <div className="text-sm sm:text-md text-gray-600">
+                    {item.day}-{toPersianNumber(item.date)}
+                </div>
                 <div className="text-xs sm:text-sm">
                     {item.status === "full" && <span className="text-green-600">ظرفیت تکمیل</span>}
                     {item.status === "holiday" && <span className="text-red-500">تعطیل رسمی</span>}
-                    {item.status === "available" && <span className="text-gray-700">{item.seats} صندلی</span>}
+                    {item.status === "available" && <span className="text-gray-700">{toPersianNumber(item.date ?? 0)} صندلی</span>}
                 </div>
             </div>
         </button>

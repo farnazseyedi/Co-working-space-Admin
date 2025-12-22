@@ -1,4 +1,3 @@
-// DaySlider.tsx
 "use client";
 
 import { useRef } from "react";
@@ -19,7 +18,12 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
   return (
     <div className="flex w-full overflow-hidden rounded-b-md shadow-md">
       <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
-        <button onClick={() => swiperRef.current?.slidePrev()} className="text-white hover:text-gray-100 transition text-lg">‹</button>
+        <button
+          onClick={() => swiperRef.current?.slidePrev()}
+          className="text-white hover:text-gray-100 transition text-lg"
+        >
+          ‹
+        </button>
       </div>
 
       <Swiper
@@ -39,14 +43,26 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
         }}
       >
         {days.map((item, index) => (
-          <SwiperSlide key={index} className="flex items-stretch border-r last:border-r-0 border-gray-300">
-            <DayItem item={item} active={index === activeIndex} onClick={() => setActiveIndex(index)} />
+          <SwiperSlide
+            key={index}
+            className="flex items-stretch border-r last:border-r-0 border-gray-300"
+          >
+            <DayItem
+              item={item}
+              active={index === activeIndex}
+              onClick={() => setActiveIndex(index)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
       <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
-        <button onClick={() => swiperRef.current?.slideNext()} className="text-white hover:text-gray-100 transition text-lg">›</button>
+        <button
+          onClick={() => swiperRef.current?.slideNext()}
+          className="text-white hover:text-gray-100 transition text-lg"
+        >
+          ›
+        </button>
       </div>
     </div>
   );
