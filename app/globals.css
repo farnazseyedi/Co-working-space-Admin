@@ -83,6 +83,16 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Vazirmatn', sans-serif;
   direction: rtl;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Vazirmatn", sans-serif;
 }
