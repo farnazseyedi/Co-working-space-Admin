@@ -1,7 +1,8 @@
+import Sidebar from "./components/Navigation/NavigationBar";
 export default function Home() {
   return (
-    <div className="">
-
-    </div>
+    <>
+      <Sidebar />
+    </>
   );
 }
