@@ -6,9 +6,17 @@ import TodayReservationsTable from "./TodayReservationsTable";
 import { days } from "../../data/days";
 
 export default function PersianCalendar() {
+    interface Reservation {
+        id: number;
+        rowNumber: string;
+        fullName: string;
+        phone: string;
+        service: string;
+    }
+
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const reservationsByDay: Record<string, any[]> = {
+    const reservationsByDay: Record<string, Reservation[]> = {
         "25": [
             { id: 1, rowNumber: '۰۱', fullName: 'محمد مهدی حسن پور', phone: '۰۹۱۲۳۴۵۶۷۸۹', service: 'خدمت A' },
             { id: 2, rowNumber: '۰۲', fullName: 'محمدحسین قربانی', phone: '۰۹۳۶۷۸۹۴۵۶۷', service: 'خدمت B' },

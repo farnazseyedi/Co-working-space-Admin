@@ -27,13 +27,15 @@ export default function Sidebar() {
     const isMessagesRoute =
         pathname === "/messages" || pathname.startsWith("/messages/");
 
-    const [messagesOpen, setMessagesOpen] = useState(false);
+    const [messagesOpen, setMessagesOpen] = useState<boolean>(false);
 
     useEffect(() => {
-        if (isMessagesRoute) {
-            setMessagesOpen(true);
-        }
+        setMessagesOpen(isMessagesRoute);
     }, [isMessagesRoute]);
+
+    const toggleMessages = () => {
+        setMessagesOpen(prev => !prev);
+    };
 
     return (
         <aside className="w-64 h-screen border-r bg-white flex flex-col">
@@ -59,9 +61,7 @@ export default function Sidebar() {
                             return (
                                 <li key={item.href}>
                                     <button
-                                        onClick={() =>
-                                            setMessagesOpen((prev) => !prev)
-                                        }
+                                        onClick={toggleMessages}
                                         className={`w-full flex items-center justify-between px-4 py-3 text-sm transition
                                         ${messagesOpen || isMessagesRoute
                                                 ? "bg-orange-50 text-orange-600 border-l-4 border-orange-500"
@@ -70,13 +70,9 @@ export default function Sidebar() {
                                     >
                                         <span>پیام‌ها</span>
 
-                                        {/* فلش */}
                                         <svg
                                             className={`w-4 h-4 transition-transform
-                                            ${messagesOpen
-                                                    ? "rotate-180"
-                                                    : ""
-                                                }`}
+                                            ${messagesOpen ? "rotate-180" : ""}`}
                                             fill="none"
                                             stroke="currentColor"
                                             strokeWidth="2"
@@ -95,8 +91,7 @@ export default function Sidebar() {
                                             <Link
                                                 href="/messages/inbox"
                                                 className={`block px-3 py-2 rounded text-xs transition
-                                                ${pathname ===
-                                                        "/messages/inbox"
+                                                ${pathname === "/messages/inbox"
                                                         ? "bg-orange-500 text-white"
                                                         : "text-gray-600 hover:bg-gray-100"
                                                     }`}
