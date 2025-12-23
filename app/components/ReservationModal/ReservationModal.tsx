@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import copy from "clipboard-copy";
 
 export interface ReservationData {
   name: string;
@@ -10,14 +12,25 @@ export interface ReservationData {
   phone: string;
   code: string;
   status: string;
+  text?: string;
 }
-
 interface Props {
   data: ReservationData;
   onClose: () => void;
 }
 
 const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyClick = async () => {
+    try {
+      await copy(data.transactionId);
+      setIsCopied(true);
+    } catch (error) {
+      console.error("Failed to copy text to clipboard", error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-white rounded-xl flex flex-col w-110 h-140 p-6 relative gap-4">
@@ -41,32 +54,45 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
         <div className="space-y-4 text-ml text-right">
           <div>
             نام و نام خانوادگی:
-            <div className="border border-gray-300 rounded-md mt-2">
+            <div className="border w-47 border-gray-300 rounded-md mt-2 flex justify-center">
               {data.name}
             </div>
           </div>
           <div className="flex mt-10">
             <div>
               تاریخ:
-              <div className="mt-4">{data.date}</div>
+              <div className="mt-4 border border-gray-300 rounded-md flex justify-center px-4 py-0.5">
+                {data.date}
+              </div>
             </div>
-            <div className="mr-32">
-              {" "}
+            <div className="mr-25">
               مبلغ:
-              <div className="mt-4">{data.amount} تومان</div>
+              <div className="mt-4 border border-gray-300 rounded-md flex justify-center px-4 py-0.5">
+                {data.amount} تومان
+              </div>
             </div>
           </div>
 
-          <div className="flex mt-10">
+          <div className="flex mt-10 justify-between ">
             <div>
-              {" "}
               شماره پیگیری:
-              <div className="mt-4">{data.trackingNumber}</div>
+              <div className="mt-4 border text-sm border-gray-300 rounded-md flex justify-center">
+                {data.trackingNumber}
+              </div>
             </div>
-            <div className="mr-17">
-              {" "}
+            <div className="">
               شماره تراکنش:
-              <div className="mt-4">{data.transactionId}</div>
+              <div className="flex justify-center items-center">
+                <div className="mt-4 border border-gray-300 rounded-md flex items-center justify-between px-4 py-0.5">
+                  <div className="text-sm">{data.transactionId}</div>
+                </div>
+                <button
+                  onClick={handleCopyClick}
+                  className="text-sm text-blue-600"
+                >
+                  {isCopied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
           </div>
           <div className="flex justify-between mt-10">

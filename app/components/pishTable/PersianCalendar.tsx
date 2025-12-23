@@ -25,10 +25,10 @@ export default function PersianCalendar() {
       time: "۱۰:۰۰",
       amount: toPersianNumber(50000),
       trackingNumber: "123456",
-      transactionId: "654321",
+      transactionId: "۱۲۳۴۵۶۰۹۸۰۰۰۴۳۲۰۰۳۴۵۶۸۷۴۵",
       phone: toPersianNumber(res.phone),
       code: toPersianNumber(res.rowNumber),
-      status: "ثبت شده",
+      status: "موفق",
     };
     setSelectedReservation(modalData);
   };
