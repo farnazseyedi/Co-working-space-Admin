@@ -34,9 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
-      <body className={`${vazirmatn.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${vazirmatn.variable} antialiased`}>{children}</body>
     </html>
   );
 }
