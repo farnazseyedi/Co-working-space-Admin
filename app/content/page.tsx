@@ -1,3 +1,4 @@
+import HeroBannerForm from "../components/Content-comps/HeroSection";
 import Navbar from "../components/Content-comps/Navbar";
 import NavigatinBar from "../components/Navigation/NavigationBar";
 export default function ContentManageMent (){
@@ -6,6 +7,7 @@ export default function ContentManageMent (){
             <NavigatinBar/>
             <div className="mr-64 p-6">
                 <Navbar/>
+                <HeroBannerForm/>
             </div>
         </div>
     )

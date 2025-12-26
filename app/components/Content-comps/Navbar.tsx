@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import home from "@/icons/home-2.svg"
-import logout from "@/icons/logout icon.svg"
+import home from "@/icons/home-2.svg";
+import logout from "@/icons/logout icon.svg";
 
 export default function Navbar() {
   return (
