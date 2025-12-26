@@ -14,7 +14,9 @@ export default function DayItem({ item, active, onClick }: Props) {
       className={`
         w-full px-3 py-3 text-center transition
         ${
-          active ? " border border-orange-500 rounded-md" : "hover:bg-orange-50"
+          active
+            ? " border border-orange-500 rounded-md"
+            : "hover:bg-secondary-100"
         }
       `}
     >
