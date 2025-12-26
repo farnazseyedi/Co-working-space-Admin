@@ -106,11 +106,14 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
                 {data.status}
               </div>
             </div>
+            <div className="w-px h-20 bg-gray-400 mx-4"></div>
 
             <div className="flex justify-center flex-col">
               <div>کد رزرو:</div>
               <div className="mt-4 flex justify-center">{data.code}</div>
             </div>
+            <div className="w-px h-20 bg-gray-400 mx-4"></div>
+
             <div>
               <div>شماره همراه:</div>
               <div className="text-blue-500 underline cursor-pointer mt-4">

@@ -38,7 +38,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-64 h-screen border-r bg-white flex flex-col">
+    <aside className="fixed top-0 right-0 w-64 h-screen bg-white shadow-lg">
       <div className="flex flex-col items-center py-6 border-b">
         {/* <Image
                     src=""
@@ -63,8 +63,8 @@ export default function Sidebar() {
                     className={`w-full flex items-center justify-between px-4 py-3 text-sm transition
                                         ${
                                           messagesOpen || isMessagesRoute
-                                            ? "bg-orange-50 text-orange-600 border-l-4 border-orange-500"
-                                            : "text-gray-600 hover:bg-gray-50"
+                                            ? "bg-secondary-100 text-secondary-500 border-l-4 border-secondary-500"
+                                            : "text-gray-600 hover:bg-secondary-100"
                                         }`}
                   >
                     <span>پیام‌ها</span>
@@ -94,8 +94,8 @@ export default function Sidebar() {
                         className={`block px-3 py-2 rounded text-xs transition
                                                 ${
                                                   pathname === "/messages/inbox"
-                                                    ? "bg-orange-500 text-white"
-                                                    : "text-gray-600 hover:bg-gray-100"
+                                                    ? "bg-secondary-500 text-white"
+                                                    : "text-gray-600 hover:bg-secondary-100"
                                                 }`}
                       >
                         صندوق پیام‌ها
@@ -106,8 +106,8 @@ export default function Sidebar() {
                         className={`block px-3 py-2 rounded text-xs transition
                                                 ${
                                                   pathname === "/messages/new"
-                                                    ? "bg-orange-500 text-white"
-                                                    : "text-gray-600 hover:bg-gray-100"
+                                                    ? "bg-secondary-500 text-white"
+                                                    : "text-gray-600 hover:bg-secondary-100"
                                                 }`}
                       >
                         ایجاد پیام جدید
@@ -127,8 +127,8 @@ export default function Sidebar() {
                   className={`flex items-center gap-3 px-4 py-3 text-sm transition
                                     ${
                                       active
-                                        ? "bg-orange-50 text-orange-600 border-l-4 border-orange-500"
-                                        : "text-gray-600 hover:bg-gray-50"
+                                        ? "bg-secondary-100 text-orange-600 border-l-4 border-orange-500"
+                                        : "text-gray-600 hover:bg-secondary-100"
                                     }`}
                 >
                   <span>{item.title}</span>

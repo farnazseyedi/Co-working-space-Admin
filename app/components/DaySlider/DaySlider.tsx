@@ -17,7 +17,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
 
   return (
     <div className="flex w-full overflow-hidden rounded-b-md shadow-md">
-      <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+      <div className="bg-secondary-100 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
         <button
           onClick={() => swiperRef.current?.slidePrev()}
           className="text-white hover:text-gray-100 transition text-lg"
@@ -33,10 +33,12 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
         className="flex-1 py-2"
         breakpoints={{
           0: { slidesPerView: 1 },
-          420: { slidesPerView: 2 },
-          480: { slidesPerView: 2 },
-          534: { slidesPerView: 3 },
-          640: { slidesPerView: 4 },
+          420: { slidesPerView: 1 },
+          480: { slidesPerView: 1 },
+          534: { slidesPerView: 2 },
+          640: { slidesPerView: 2 },
+          660: { slidesPerView: 3 },
+          780: { slidesPerView: 4 },
           768: { slidesPerView: 5 },
           1024: { slidesPerView: 6 },
           1280: { slidesPerView: 7 },
@@ -56,7 +58,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
         ))}
       </Swiper>
 
-      <div className="bg-orange-200 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+      <div className="bg-secondary-100 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
         <button
           onClick={() => swiperRef.current?.slideNext()}
           className="text-white hover:text-gray-100 transition text-lg"
