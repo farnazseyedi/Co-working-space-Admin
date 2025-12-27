@@ -44,7 +44,6 @@ export default function Dashboard() {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           />
-
           <div className="flex justify-between items-end">
             <div className="font-bold text-xl">
               <h1>لیست رزورهای امروز</h1>
