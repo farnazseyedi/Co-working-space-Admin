@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import NavigatinBar from "../components/Navigation/NavigationBar";
-import PersianCalendar from "../components/pishTable/PersianCalendar";
-import BlueButton from "../components/Button/BlueButton";
-import DaySlider from "../components/DaySlider/DaySlider";
-import ReservationModal from "../components/Modal/ReservationModal";
+import NavigatinBar from "../../components/Navigation/NavigationBar";
+import PersianCalendar from "../../components/pishTable/PersianCalendar";
+import BlueButton from "../../components/Button/BlueButton";
+import DaySlider from "../../components/DaySlider/DaySlider";
+import ReservationModal from "../../components/Modal/ReservationModal";
 
 export default function Dashboard() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -44,6 +44,7 @@ export default function Dashboard() {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           />
+
           <div className="flex justify-between items-end">
             <div className="font-bold text-xl">
               <h1>لیست رزورهای امروز</h1>

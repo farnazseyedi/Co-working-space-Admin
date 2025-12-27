@@ -17,7 +17,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
 
   return (
     <div className="flex w-full overflow-hidden rounded-b-md shadow-md">
-      <div className="bg-secondary-100 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+      <div className="bg-secondary-100 flex items-center justify-center w-9 sm:w-10 md:w-12">
         <button
           onClick={() => swiperRef.current?.slidePrev()}
           className="text-white hover:text-gray-100 transition text-lg"
@@ -58,7 +58,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
         ))}
       </Swiper>
 
-      <div className="bg-secondary-100 flex items-center justify-center w-[36px] sm:w-[40px] md:w-[48px]">
+      <div className="bg-secondary-100 flex items-center justify-center w-9 sm:w-10 md:w-12">
         <button
           onClick={() => swiperRef.current?.slideNext()}
           className="text-white hover:text-gray-100 transition text-lg"

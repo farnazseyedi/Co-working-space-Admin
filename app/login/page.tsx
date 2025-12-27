@@ -21,7 +21,7 @@ export default function LoginPage() {
             فضای کار اشتراکی آکادمی مکین
           </div>
           <div
-            className="bg-white w-full max-w-[500px] rounded-3xl shadow-2xl p-16 flex flex-col justify-center"
+            className="bg-white w-full max-w-125 rounded-3xl shadow-2xl p-16 flex flex-col justify-center"
             style={{ minHeight: "650px" }}
           >
             <div>
@@ -67,7 +67,7 @@ export default function LoginPage() {
           <Image
             src={forlogin}
             alt="Login Illustration"
-            className="w-[320px] sm:w-[420px] lg:w-[540px] h-auto"
+            className="w-[320px] sm:w-105 lg:w-135 h-auto"
             priority
           />
         </div>

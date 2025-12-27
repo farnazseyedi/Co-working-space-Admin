@@ -1,18 +1,17 @@
 "use client";
-
-import { FC, ReactNode, useState } from "react";
+import { FC, useState } from "react";
 import RangeCalendar from "../Reservation/Calendar";
 import BookingSummary from "../Reservation/SummaryPanel";
 
-interface Props {
+type Props = {
+  date: string;
   onClose: () => void;
-  children?: ReactNode;
-}
+};
 
-const ReservationModal: FC<Props> = ({ onClose, children }) => {
+const ReservationModal: FC<Props> = ({ onClose }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState("");
 
   const basePrice = 200000;
 
@@ -32,35 +31,46 @@ const ReservationModal: FC<Props> = ({ onClose, children }) => {
       : 0;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start pt-20 z-50">
-      <div className="bg-white w-[600px] rounded-lg shadow-lg p-6 relative">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start z-50 overflow-auto">
+      <div className="bg-white w-full max-w-225 rounded-lg shadow-lg p-6 relative my-8 overflow-auto">
         <div className="flex justify-between mb-6">
           <h2 className="text-lg font-semibold">افزودن رزرو جدید</h2>
-
           <button
-            className="absolute top-4 right-4 text-black rounded-xl border-black px-2.5 py-0 border-2 hover:opacity-45 text-lg"
+            className="text-black rounded-xl border-black px-3 py-1 border-2 hover:opacity-75 text-lg"
             onClick={onClose}
           >
             ×
           </button>
         </div>
 
-        {children}
+        <div className="h-px bg-gray-400 my-5 w-full"></div>
 
-        <div className="mt-4">
-          <RangeCalendar
-            startDate={startDate}
-            endDate={endDate}
-            onDateChange={handleDateChange}
-          />
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col flex-1 min-w-0">
+            <label className="mb-1 text-sm font-medium">نام کاربری</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 w-full focus:border-gray-500 focus:outline-none"
+              placeholder="نام کاربری"
+            />
+          </div>
+
+          <div className="flex flex-col flex-1 min-w-0">
+            <label className="mb-1 text-sm font-medium">تاریخ رزرو</label>
+            <div className="w-full">
+              <RangeCalendar
+                startDate={startDate}
+                endDate={endDate}
+                onDateChange={handleDateChange}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="mt-6">
-          <BookingSummary
-            daysCount={daysCount}
-            basePrice={basePrice}
-            isLoading={isLoading}
-          />
+          <BookingSummary daysCount={daysCount} basePrice={basePrice} />
         </div>
       </div>
     </div>

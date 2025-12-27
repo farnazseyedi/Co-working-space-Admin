@@ -21,6 +21,7 @@ interface Props {
 
 const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const [showFullPhone, setShowFullPhone] = useState(false);
 
   const handleCopyClick = async () => {
     try {
@@ -29,6 +30,16 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
     } catch (error) {
       console.error("Failed to copy text to clipboard", error);
     }
+  };
+
+  const maskPhone = (phone?: string): string => {
+    if (!phone || phone.length <= 5) return phone ?? "";
+
+    const start = phone.slice(0, 3);
+    const end = phone.slice(-2);
+    const stars = "*".repeat(phone.length - 5);
+
+    return `${start}${stars}${end}`;
   };
 
   return (
@@ -116,8 +127,19 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
 
             <div>
               <div>شماره همراه:</div>
-              <div className="text-blue-500 underline cursor-pointer mt-4">
-                {data.phone}
+
+              <div
+                className="text-neutral-800 underline mt-4"
+                style={{ direction: "ltr" }}
+              >
+                {showFullPhone ? data.phone : maskPhone(data.phone)}
+              </div>
+
+              <div
+                className="text-xs text-info-500 cursor-pointer mt-1"
+                onClick={() => setShowFullPhone((prev) => !prev)}
+              >
+                {showFullPhone ? "مخفی کردن" : "نمایش کامل"}
               </div>
             </div>
           </div>
