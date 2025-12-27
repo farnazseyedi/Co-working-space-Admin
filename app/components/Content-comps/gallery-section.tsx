@@ -17,7 +17,7 @@ import {
 } from "@dnd-kit/sortable";
 import { Plus } from "lucide-react";
 import { SortableImage } from "./sortable-image";
-import { FormValues } from "@/app/lib/schemas/features-gallery";
+import { FormValues } from "@/app/lib/schemas/content-schema";
 import { useEffect } from "react";
 import { CardTitle } from "../ui/card";
 import { Separator } from "../ui/seprator";
@@ -71,12 +71,12 @@ export const GallerySection = () => {
 
   return (
     <section>
-    <div className="flex items-center gap-4">
-            <CardTitle className="text-xl font-bold text-neutral-900">
-              گالری 
-            </CardTitle>
-            <Separator className="flex-1 bg-neutral-400" />
-          </div>
+      <div className="flex items-center gap-4">
+        <CardTitle className="text-xl font-bold text-neutral-900">
+          گالری
+        </CardTitle>
+        <Separator className="flex-1 bg-neutral-400" />
+      </div>
 
       <DndContext
         sensors={sensors}
@@ -104,7 +104,7 @@ export const GallerySection = () => {
                   className="text-neutral-700 group-hover:text-neutral-700 "
                 />
               </div>
-              
+
               <input
                 type="file"
                 multiple

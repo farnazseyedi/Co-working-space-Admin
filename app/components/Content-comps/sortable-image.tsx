@@ -31,6 +31,8 @@ export const SortableImage = ({
     >
       <Image
         src={preview}
+        width={100}
+        height={100}
         alt="gallery"
         className="w-full h-full object-cover hover:opacity-50"
       />

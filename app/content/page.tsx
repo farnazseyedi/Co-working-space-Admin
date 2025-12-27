@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   featuresAndGallerySchema,
   FormValues,
-} from "@/app/lib/schemas/features-gallery";
+} from "@/app/lib/schemas/content-schema";
 import { MOCK_DATA } from "@/app/services/mock/features-gallery-service";
 
 import { FeaturesSection } from "../components/Content-comps/features";
@@ -29,9 +29,10 @@ export default function ContentManageMent() {
       <NavigatinBar />
       <div className="mr-64 p-6">
         <Navbar />
+        <HeroBannerForm />
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
-            <HeroBannerForm />
+            
             <FeaturesSection />
             <GallerySection />
 

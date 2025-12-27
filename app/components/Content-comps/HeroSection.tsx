@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {ImageIcon, Loader2 } from "lucide-react";
+import {  ImageIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 import { Button } from "@/app/components/ui/Button";
