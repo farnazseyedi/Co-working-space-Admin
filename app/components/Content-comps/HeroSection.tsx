@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Trash2, UploadCloud, Pencil, ImageIcon, Loader2 } from "lucide-react";
+import { Trash2, UploadCloud, ImageIcon, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 import { Button } from "@/app/components/ui/Button";
@@ -31,6 +31,9 @@ import {
 import { heroService } from "@/app/services/mock/hero-service";
 
 import heroBanner from "@/images/heroBanner.jpg";
+import edit from "@/icons/edit.svg";
+import upload from "@/icons/upload.svg";
+import trash from "@/icons/trash.svg";
 
 export default function HeroBannerForm() {
   const [isLoading, setIsLoading] = useState(true);
@@ -106,14 +109,14 @@ export default function HeroBannerForm() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full mx-auto">
       <Card className="border-none shadow-none bg-transparent">
         <CardHeader className="px-0 pt-0">
           <div className="flex items-center gap-4">
             <CardTitle className="text-xl font-bold text-slate-800">
               بنر اصلی
             </CardTitle>
-            <Separator className="flex-1 bg-slate-200" />
+            <Separator className="flex-1 bg-neutral-400" />
           </div>
         </CardHeader>
 
@@ -121,8 +124,8 @@ export default function HeroBannerForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="flex-1 space-y-32 order-2 md:order-2 w-full">
-                  <div className="space-y-2 text-sm text-slate-400 text-right">
+                <div className="flex-1 space-y-21 order-2 md:order-2 w-full">
+                  <div className="space-y-2 text-sm text-neutral-400 text-right pt-3">
                     <p>فرمت عکس JPG</p>
                     <p>ابعاد 1440*810</p>
                     <p>حجم حداکثر 10 مگابایت</p>
@@ -140,27 +143,31 @@ export default function HeroBannerForm() {
                       <Button
                         type="button"
                         variant="outline"
-                        className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                        className="w-[220px] h-[48px] text-md text-primary-500 border-primary-500 hover:bg-primary-200 hover:border-none"
                         onClick={() => fileInputRef.current?.click()}
                       >
-                        <UploadCloud className="w-4 h-4 ml-2" />
+                        <Image
+                          src={upload}
+                          alt="upload"
+                          className="w-5 h-5 ml-1"
+                        />
                         بارگذاری تصویر جدید
                       </Button>
                       <Button
                         type="button"
                         variant="ghost"
-                        className="text-slate-500 hover:text-red-500"
+                        className="text-md text-primary-500 hover:text-primary-400"
                         onClick={handleDeleteImage}
                         disabled={!preview}
                       >
-                        <Trash2 className="w-4 h-4 ml-2" />
+                        <Image src={trash} alt="trash" className="w-5 h-5 " />
                         حذف
                       </Button>
                     </div>
                   </div>
                 </div>
 
-                <div className="w-full md:w-100 h-55 bg-slate-100 rounded-xl overflow-hidden relative border border-slate-200 order-1 md:order-1">
+                <div className="w-full md:w-100 h-55 bg-neutral-100 rounded-xl overflow-hidden relative border border-neutral-200 order-1 md:order-1">
                   {preview ? (
                     <Image
                       src={heroBanner}
@@ -169,7 +176,7 @@ export default function HeroBannerForm() {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="flex flex-col items-center justify-center h-full text-slate-400">
+                    <div className="flex flex-col items-center justify-center h-full text-neutral-400">
                       <ImageIcon className="w-12 h-12 mb-2 opacity-50" />
                       <span>تصویری انتخاب نشده</span>
                     </div>
@@ -185,9 +192,18 @@ export default function HeroBannerForm() {
                     <FormItem>
                       <FormLabel>جمله اول بنر اصلی</FormLabel>
                       <FormControl>
-                        <div className="relative w-140">
-                          <Input {...field} className="pl-10 h-12" />
-                          <Pencil className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                        <div className="relative flex w-140">
+                          <Input
+                            {...field}
+                            className="pl-10 h-12 text-neutral-400 border-neutral-400"
+                          />
+                          <Image
+                            src={edit}
+                            alt="edit"
+                            width={24}
+                            height={24}
+                            className="absolute left-3 top-3 text-neutral-400"
+                          />
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -202,28 +218,23 @@ export default function HeroBannerForm() {
                       <FormLabel>جمله دوم بنر اصلی</FormLabel>
                       <FormControl>
                         <div className="relative w-140">
-                          <Input {...field} className="pl-10 h-12" />
-                          <Pencil className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                          <Input
+                            {...field}
+                            className="pl-10 h-12 text-neutral-400 border-neutral-400"
+                          />
+                          <Image
+                            src={edit}
+                            alt="edit"
+                            width={24}
+                            height={24}
+                            className="absolute left-3 top-3 text-neutral-400"
+                          />
                         </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </div>
-
-              <div className="flex justify-end">
-                <Button
-                  type="submit"
-                  disabled={!form.formState.isDirty || isSubmitting}
-                  className="bg-blue-600 hover:bg-blue-700 text-white min-w-30"
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="animate-spin w-4 h-4" />
-                  ) : (
-                    "ذخیره تغییرات"
-                  )}
-                </Button>
               </div>
             </form>
           </Form>
