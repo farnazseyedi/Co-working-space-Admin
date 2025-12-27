@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -11,7 +11,7 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { title: "پیشخوان", href: "/dashboard" },
+  { title: "پیشخوان", href: "/pages/dashboard" },
   { title: "تقویم فضا", href: "/calendar" },
   { title: "رزروها", href: "/reservations" },
   { title: "امور مالی", href: "/finance" },
