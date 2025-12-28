@@ -37,7 +37,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="h-px bg-gray-400 my-5 w-full"></div>
+        <div className="h-px bg-neutral-400 my-5 w-full"></div>
 
         <div className="mt-6 space-y-4">
           <DaySlider

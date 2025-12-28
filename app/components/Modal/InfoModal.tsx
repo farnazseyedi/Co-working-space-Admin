@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import copy from "clipboard-copy";
 
 export interface ReservationData {
@@ -14,12 +13,13 @@ export interface ReservationData {
   status: string;
   text?: string;
 }
+
 interface Props {
   data: ReservationData;
   onClose: () => void;
 }
 
-const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
+function ReservationModal({ data, onClose }: Props) {
   const [isCopied, setIsCopied] = useState(false);
   const [showFullPhone, setShowFullPhone] = useState(false);
 
@@ -34,11 +34,9 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
 
   const maskPhone = (phone?: string): string => {
     if (!phone || phone.length <= 5) return phone ?? "";
-
     const start = phone.slice(0, 3);
     const end = phone.slice(-2);
     const stars = "*".repeat(phone.length - 5);
-
     return `${start}${stars}${end}`;
   };
 
@@ -62,6 +60,7 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
             {data.date}-{data.time}
           </div>
         </div>
+
         <div className="space-y-4 text-ml text-right">
           <div>
             نام و نام خانوادگی:
@@ -69,6 +68,7 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
               {data.name}
             </div>
           </div>
+
           <div className="flex mt-10">
             <div>
               تاریخ:
@@ -84,14 +84,15 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
             </div>
           </div>
 
-          <div className="flex mt-10 justify-between ">
+          <div className="flex mt-10 justify-between">
             <div>
               شماره پیگیری:
               <div className="mt-4 border text-sm border-gray-300 rounded-md flex justify-center">
                 {data.trackingNumber}
               </div>
             </div>
-            <div className="">
+
+            <div>
               شماره تراکنش:
               <div className="flex justify-center items-center">
                 <div className="mt-4 border border-gray-300 rounded-md flex items-center justify-between px-4 py-0.5">
@@ -106,6 +107,7 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
               </div>
             </div>
           </div>
+
           <div className="flex justify-between mt-10">
             <div className="flex justify-center flex-col">
               <div>وضعیت رزرو:</div>
@@ -117,24 +119,24 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
                 {data.status}
               </div>
             </div>
-            <div className="w-px h-20 bg-gray-400 mx-4"></div>
+
+            <div className="w-px h-20 bg-neutral-400 mx-4"></div>
 
             <div className="flex justify-center flex-col">
               <div>کد رزرو:</div>
               <div className="mt-4 flex justify-center">{data.code}</div>
             </div>
-            <div className="w-px h-20 bg-gray-400 mx-4"></div>
+
+            <div className="w-px h-20 bg-neutral-400 mx-4"></div>
 
             <div>
               <div>شماره همراه:</div>
-
               <div
                 className="text-neutral-800 underline mt-4"
                 style={{ direction: "ltr" }}
               >
                 {showFullPhone ? data.phone : maskPhone(data.phone)}
               </div>
-
               <div
                 className="text-xs text-info-500 cursor-pointer mt-1"
                 onClick={() => setShowFullPhone((prev) => !prev)}
@@ -147,6 +149,6 @@ const ReservationModal: React.FC<Props> = ({ data, onClose }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ReservationModal;

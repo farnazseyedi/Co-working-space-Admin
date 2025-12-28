@@ -1,4 +1,3 @@
-import React from "react";
 export interface Reservation {
   id: number;
   rowNumber: number;
@@ -12,10 +11,7 @@ interface Props {
   onDetailClick: (reservation: Reservation) => void;
 }
 
-const TodayReservationsTable: React.FC<Props> = ({
-  reservations,
-  onDetailClick,
-}) => {
+function TodayReservationsTable({ reservations, onDetailClick }: Props) {
   return (
     <div className="mx-4 mt-8">
       <div className="bg-white rounded-lg w-full shadow overflow-hidden">
@@ -52,6 +48,6 @@ const TodayReservationsTable: React.FC<Props> = ({
       </div>
     </div>
   );
-};
+}
 
 export default TodayReservationsTable;

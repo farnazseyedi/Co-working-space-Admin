@@ -35,7 +35,7 @@ export default function Sidebar() {
   return (
     <aside className="fixed top-0 right-0 w-64 h-screen bg-white shadow-lg">
       <div className="flex flex-col items-center py-6 border-b">
-        <span className="mt-3 font-medium text-gray-800 text-lg">
+        <span className="mt-3 font-medium text-neutral-800 text-lg">
           محمد درستکار
         </span>
       </div>
@@ -116,7 +116,7 @@ export default function Sidebar() {
                     ${
                       active
                         ? "bg-secondary-100 text-orange-600 font-medium"
-                        : "text-gray-600 hover:bg-secondary-100 hover:text-orange-600"
+                        : "text-neutral-600 hover:bg-secondary-100 hover:text-orange-600"
                     }`}
                 >
                   <span>{item.title}</span>

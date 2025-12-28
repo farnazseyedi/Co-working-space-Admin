@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { useState } from "react";
 import RangeCalendar from "../Reservation/Calendar";
 import BookingSummary from "../Reservation/SummaryPanel";
 
@@ -8,7 +8,7 @@ type Props = {
   onClose: () => void;
 };
 
-const ReservationModal: FC<Props> = ({ onClose }) => {
+function ReservationModal({ onClose }: Props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [username, setUsername] = useState("");
@@ -75,6 +75,6 @@ const ReservationModal: FC<Props> = ({ onClose }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ReservationModal;

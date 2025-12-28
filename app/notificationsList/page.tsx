@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import NavigatinBar from "../components/Navigation/NavigationBar";
+import { MessageButtons } from "../components/Button/MessageButtons";
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -8,32 +9,53 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: "یک سوال که برای فضای کار اشتراکی مکین استفاده می‌شود؟",
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
       answer: "Answer 1...",
       status: "تایید شده",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
-      question: "یک سوال که برای فضای کار اشتراکی مکین استفاده می‌شود؟",
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
       answer: "Answer 2...",
       status: "در انتظار تایید",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
-      question: "یک سوال که برای فضای کار اشتراکی مکین استفاده می‌شود؟",
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
       answer: "Answer 3...",
       status: "عدم تایید",
+      date: "۱۴۰۴/۰۷/۰۷",
+      daysAgo: 5,
+    },
+    {
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
+      answer: "Answer 3...",
+      status: "در انتظار تایید",
+      date: "۱۴۰۴/۰۷/۰۷",
+      daysAgo: 5,
+    },
+    {
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
+      answer: "Answer 3...",
+      status: "عدم تایید",
+      date: "۱۴۰۴/۰۷/۰۷",
+      daysAgo: 5,
+    },
+    {
+      question: "رسید واریز وجه | محمدمهدی حسن‌پور",
+      answer: "Answer 3...",
+      status: "تایید شده",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
   ];
 
   const statusColor: Record<string, string> = {
-    "تایید شده": "text-green-500",
-    "در انتظار تایید": "text-gray-500",
-    "عدم تایید": "text-red-500",
+    "تایید شده": "text-success-500",
+    "در انتظار تایید": "text-neutral-500",
+    "عدم تایید": "text-error-600",
   };
 
   const toggleFAQ = (index: number) => {
@@ -67,16 +89,28 @@ export default function FAQ() {
     <div className="min-h-screen bg-gray-100">
       <NavigatinBar />
 
-      {/* 🟦 این بخش مثل Dashboard هست */}
       <div className="mr-64 p-6">
-        <div className="flex gap-2 mb-6 justify-start flex-wrap">
+        <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-center">
+          <h1 className="text-lg font-bold">پیام ها</h1>
+        </header>
+        <div className="flex justify-end">
+          <MessageButtons />
+        </div>
+        <div className="flex items-center mt-7 gap-4">
+          <div className="text-neutral-900 text-xl font-bold">
+            صندوق پیام‌ها
+          </div>
+          <div className="h-px bg-neutral-400 flex-1"></div>
+        </div>
+
+        <div className="flex gap-2 mb-6 justify-start flex-wrap mt-10">
           {filters.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-full border transition ${
                 filter === f
-                  ? "bg-blue-500 text-white"
+                  ? "bg-tertiary-500 text-white"
                   : "bg-white text-gray-700 border-gray-300"
               }`}
             >
@@ -91,34 +125,32 @@ export default function FAQ() {
               key={index}
               className="relative rounded-xl border-0.5 transition-all duration-300 overflow-hidden bg-neutral-50 shadow-md border-secondary-500"
             >
-              <div className="absolute top-0 right-0 h-full w-1 bg-blue-500 rounded-tr-xl rounded-br-xl"></div>
+              <div className="absolute top-0 right-0 h-full w-1 bg-tertiary-500 rounded-tr-xl rounded-br-xl"></div>
 
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center px-8 py-6 text-left text-gray-900 font-medium focus:outline-none"
+                className="w-full flex justify-between items-center px-8 py-6 text-left text-neutral-900 font-medium focus:outline-none"
               >
                 <div className="text-xl flex flex-col gap-2">
-                  <span className="flex items-center gap-4">
-                    <span>{item.question}</span>
-                    <span
-                      className={`${
-                        statusColor[item.status]
-                      } text-sm font-semibold`}
-                    >
-                      ({item.status})
-                    </span>
-                  </span>
-                  <span className="text-gray-400 text-sm">
+                  <div className="flex gap-4 justify-between">
+                    <div>{item.question}</div>
+                  </div>
+                  <div className="flex text-neutral-400 text-sm">
                     ارسال شده از {item.daysAgo} روز پیش | {item.date}
-                  </span>
+                  </div>
                 </div>
-                <span
-                  className={`transform transition-transform duration-300 scale-x-175 ${
-                    statusColor[item.status]
-                  } ${activeIndex === index ? "rotate-0" : "rotate-180"}`}
-                >
-                  ^
-                </span>
+                <div className="flex text-xl gap-5">
+                  <div className={`${statusColor[item.status]}`}>
+                    {item.status}
+                  </div>
+                  <div
+                    className={`transform transition-transform duration-300 scale-x-175 ${
+                      statusColor[item.status]
+                    } ${activeIndex === index ? "rotate-0" : "rotate-180"}`}
+                  >
+                    ^
+                  </div>
+                </div>
               </button>
 
               <div
