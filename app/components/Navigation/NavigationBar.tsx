@@ -1,9 +1,8 @@
 "use client";
 
-// import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface MenuItem {
   title: string;
@@ -24,14 +23,10 @@ const menuItems: MenuItem[] = [
 export default function Sidebar() {
   const pathname = usePathname();
 
-  const isMessagesRoute =
-    pathname === "/messages" || pathname.startsWith("/messages/");
-
-  const [messagesOpen, setMessagesOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMessagesOpen(isMessagesRoute);
-  }, [isMessagesRoute]);
+  const [messagesOpen, setMessagesOpen] = useState(
+    pathname.startsWith("/messages") ||
+      pathname.startsWith("/notificationsList")
+  );
 
   const toggleMessages = () => {
     setMessagesOpen((prev) => !prev);
@@ -40,40 +35,35 @@ export default function Sidebar() {
   return (
     <aside className="fixed top-0 right-0 w-64 h-screen bg-white shadow-lg">
       <div className="flex flex-col items-center py-6 border-b">
-        {/* <Image
-                    src=""
-                    alt="profile"
-                    width={96}
-                    height={96}
-                    className="rounded-full"
-                /> */}
-        <span className="mt-3 font-medium text-gray-800">محمد درستکار</span>
+        <span className="mt-3 font-medium text-gray-800 text-lg">
+          محمد درستکار
+        </span>
       </div>
 
       <nav className="flex-1 py-4">
         <ul className="space-y-1">
           {menuItems.map((item) => {
             const isMessages = item.href === "/messages";
+            const active = pathname === item.href;
 
             if (isMessages) {
               return (
                 <li key={item.href}>
                   <button
                     onClick={toggleMessages}
-                    className={`w-full flex items-center justify-between px-4 py-3 text-sm transition
-                                        ${
-                                          messagesOpen || isMessagesRoute
-                                            ? "bg-secondary-100 text-secondary-500 border-l-4 border-secondary-500"
-                                            : "text-gray-600 hover:bg-secondary-100"
-                                        }`}
+                    className={`w-full flex items-center justify-between px-4 py-3 text-lg transition
+                      ${
+                        messagesOpen
+                          ? "bg-secondary-100 text-orange-600 font-medium"
+                          : "text-gray-600 hover:bg-secondary-100 hover:text-orange-600"
+                      }`}
                   >
                     <span>پیام‌ها</span>
 
                     <svg
-                      className={`w-4 h-4 transition-transform
-                                            ${
-                                              messagesOpen ? "rotate-180" : ""
-                                            }`}
+                      className={`w-5 h-5 transition-transform ${
+                        messagesOpen ? "rotate-180" : ""
+                      }`}
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -88,27 +78,27 @@ export default function Sidebar() {
                   </button>
 
                   {messagesOpen && (
-                    <div className="mx-4 mt-1 rounded-lg bg-white border p-2 space-y-1">
+                    <div className="w-full mt-1 space-y-1">
                       <Link
-                        href="/messages/inbox"
-                        className={`block px-3 py-2 rounded text-xs transition
-                                                ${
-                                                  pathname === "/messages/inbox"
-                                                    ? "bg-secondary-500 text-white"
-                                                    : "text-gray-600 hover:bg-secondary-100"
-                                                }`}
+                        href="/notificationsList"
+                        className={`block w-full px-4 py-2 text-lg transition
+        ${
+          pathname === "/notificationsList"
+            ? "bg-secondary-300 text-neutral-800 font-medium"
+            : "text-neutral-600 hover:bg-secondary-100 hover:text-orange-600"
+        }`}
                       >
                         صندوق پیام‌ها
                       </Link>
 
                       <Link
                         href="/messages/new"
-                        className={`block px-3 py-2 rounded text-xs transition
-                                                ${
-                                                  pathname === "/messages/new"
-                                                    ? "bg-secondary-500 text-white"
-                                                    : "text-gray-600 hover:bg-secondary-100"
-                                                }`}
+                        className={`block w-full px-4 py-2 text-lg transition
+        ${
+          pathname === "/messages/new"
+            ? "bg-secondary-100 text-orange-600 font-medium"
+            : "text-neutral-600 hover:bg-secondary-100 hover:text-orange-600"
+        }`}
                       >
                         ایجاد پیام جدید
                       </Link>
@@ -118,18 +108,16 @@ export default function Sidebar() {
               );
             }
 
-            const active = pathname === item.href;
-
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 text-sm transition
-                                    ${
-                                      active
-                                        ? "bg-secondary-100 text-orange-600 border-l-4 border-orange-500"
-                                        : "text-gray-600 hover:bg-secondary-100"
-                                    }`}
+                  className={`flex items-center gap-3 px-4 py-3 text-lg transition rounded
+                    ${
+                      active
+                        ? "bg-secondary-100 text-orange-600 font-medium"
+                        : "text-gray-600 hover:bg-secondary-100 hover:text-orange-600"
+                    }`}
                 >
                   <span>{item.title}</span>
                 </Link>
