@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import NavigatinBar from "../../components/Navigation/NavigationBar";
-import PersianCalendar from "../../components/pishTable/PersianCalendar";
+import PersianCalendar from "../../components/pishkhan/pishTable/PersianCalendar";
 import BlueButton from "../../components/Button/BlueButton";
-import DaySlider from "../../components/DaySlider/DaySlider";
+import DaySlider from "../../components/pishkhan/DaySlider/DaySlider";
 import ReservationModal from "../../components/Modal/ReservationModal";
 
 export default function Dashboard() {

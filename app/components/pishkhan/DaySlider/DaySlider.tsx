@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import DayItem from "./DayItem";
-import { days } from "../../data/days";
+import { days } from "../../../data/days";
 
 type Props = {
   activeIndex: number;

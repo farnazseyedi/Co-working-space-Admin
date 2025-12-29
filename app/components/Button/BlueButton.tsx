@@ -1,6 +1,7 @@
-interface BlueButtonProps {
-  onClick?: () => void;
-}
+type BlueButtonProps = {
+  onClick: () => void;
+  children?: React.ReactNode;
+};
 
 export default function BlueButton({ onClick }: BlueButtonProps) {
   return (

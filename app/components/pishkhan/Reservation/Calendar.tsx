@@ -2,8 +2,8 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import jalaali from "jalaali-js";
-import { toPersianNumber } from "../../lib/Persian";
-import { cn } from "../../lib/Persian";
+import { toPersianNumber } from "../../../lib/Persian";
+import { cn } from "../../../lib/Persian";
 
 const weekDays = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
 const persianMonths = [

@@ -1,4 +1,4 @@
-import { DayItem as DayItemType } from "../../data/days";
+import { DayItem as DayItemType } from "../../../data/days";
 
 type Props = {
   item: DayItemType;

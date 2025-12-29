@@ -1,10 +1,10 @@
 "use client";
 
 import TodayReservationsTable, { Reservation } from "./TodayReservationsTable";
-import ReservationModal, { ReservationData } from "../Modal/InfoModal";
-import { days } from "../../data/days";
-import { toPersianNumber, toEnglishNumber } from "../../utils/convertNumber";
-import { reservationsByDay } from "../../data/reservationsData";
+import ReservationModal, { ReservationData } from "../../Modal/InfoModal";
+import { days } from "../../../data/days";
+import { toPersianNumber, toEnglishNumber } from "../../../utils/convertNumber";
+import { reservationsByDay } from "../../../data/reservationsData";
 import { useState } from "react";
 
 interface PersianCalendarProps {

@@ -80,10 +80,10 @@ export default function Sidebar() {
                   {messagesOpen && (
                     <div className="w-full mt-1 space-y-1">
                       <Link
-                        href="/notificationsList"
+                        href="/pages/notificationsList"
                         className={`block w-full px-4 py-2 text-lg transition
         ${
-          pathname === "/notificationsList"
+          pathname === "/pages/notificationsList"
             ? "bg-secondary-300 text-neutral-800 font-medium"
             : "text-neutral-600 hover:bg-secondary-100 hover:text-orange-600"
         }`}

@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import NavigatinBar from "../components/Navigation/NavigationBar";
-import { MessageButtons } from "../components/Button/MessageButtons";
+import NavigatinBar from "../../components/Navigation/NavigationBar";
+import { MessageButtons } from "../../components/Button/MessageButtons";
+import PaymentButtons from "../../components/Button/PaymentButtons";
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -10,42 +11,42 @@ export default function FAQ() {
   const faqs = [
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 1...",
+      answer: "photo 1...",
       status: "تایید شده",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 2...",
+      answer: "photo 2...",
       status: "در انتظار تایید",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 3...",
+      answer: "photo 3...",
       status: "عدم تایید",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 3...",
+      answer: "photo 3...",
       status: "در انتظار تایید",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 3...",
+      answer: "photo 3...",
       status: "عدم تایید",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
     },
     {
       question: "رسید واریز وجه | محمدمهدی حسن‌پور",
-      answer: "Answer 3...",
+      answer: "photo 3...",
       status: "تایید شده",
       date: "۱۴۰۴/۰۷/۰۷",
       daysAgo: 5,
@@ -91,7 +92,7 @@ export default function FAQ() {
 
       <div className="mr-64 p-6">
         <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-center">
-          <h1 className="text-lg font-bold">پیام ها</h1>
+          <h1 className="text-neutral-800 text-xl font-bold">پیام ها</h1>
         </header>
         <div className="flex justify-end">
           <MessageButtons />
@@ -161,8 +162,12 @@ export default function FAQ() {
                 }}
                 className="px-5 overflow-hidden"
               >
-                <hr className="border-gray-300 mb-3" />
+                <div className="h-px bg-neutral-300 flex-1"></div>
                 <p className="text-gray-700 text-sm py-2">{item.answer}</p>
+                <div className="h-px bg-neutral-300 flex-1"></div>
+                <div className="mb-7 mt-7">
+                  <PaymentButtons />
+                </div>
               </div>
             </div>
           ))}

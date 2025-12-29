@@ -19,7 +19,7 @@ interface Props {
   onClose: () => void;
 }
 
-function ReservationModal({ data, onClose }: Props) {
+function InfoModal({ data, onClose }: Props) {
   const [isCopied, setIsCopied] = useState(false);
   const [showFullPhone, setShowFullPhone] = useState(false);
 
@@ -151,4 +151,4 @@ function ReservationModal({ data, onClose }: Props) {
   );
 }
 
-export default ReservationModal;
+export default InfoModal;

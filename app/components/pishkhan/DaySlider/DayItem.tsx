@@ -1,5 +1,5 @@
-import { DayItem as DayItemType } from "../../data/days";
-import { toPersianNumber } from "../../utils/convertNumber";
+import { DayItem as DayItemType } from "../../../data/days";
+import { toPersianNumber } from "../../../utils/convertNumber";
 
 type Props = {
   item: DayItemType;
