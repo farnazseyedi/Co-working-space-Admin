@@ -3,7 +3,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  featuresAndGallerySchema,
+  contentSchema,
   FormValues,
 } from "@/app/lib/schemas/content-schema";
 import { MOCK_DATA } from "@/app/services/mock/features-gallery-service";
@@ -16,7 +16,7 @@ import NavigatinBar from "../components/Navigation/NavigationBar";
 
 export default function ContentManageMent() {
   const methods = useForm<FormValues>({
-    resolver: zodResolver(featuresAndGallerySchema),
+    resolver: zodResolver(contentSchema),
     defaultValues: MOCK_DATA,
   });
 
@@ -29,13 +29,13 @@ export default function ContentManageMent() {
       <NavigatinBar />
       <div className="mr-64 p-6">
         <Navbar />
-        <HeroBannerForm />
+        
         <FormProvider {...methods}>
+
           <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
-            
+            <HeroBannerForm />
             <FeaturesSection />
             <GallerySection />
-
             <div className="flex justify-center p-4">
               <button
                 type="submit"

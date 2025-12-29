@@ -21,3 +21,41 @@ export const MOCK_DATA: FormValues = {
     { id: "5", preview: gallery },
   ],
 };
+
+import {
+  HeroBannerData,
+  
+} from "@/app/lib/schemas/content-schema";
+
+const MOCK: HeroBannerData = {
+  id: 1,
+  title: "فضای کار اشتراکی آکادمی مکین",
+  subtitle: "فضایی که کارت نیاز داره!",
+  imageUrl: "/images/placeholder-hero.jpg",
+};
+
+export interface UpdateResponse {
+  success: boolean;
+  message: string;
+}
+
+export const heroService = {
+  getBannerData: async (): Promise<HeroBannerData> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(MOCK);
+      }, 800);
+    });
+  },
+
+  updateBannerData: async (
+    data: FormValues
+  ): Promise<UpdateResponse> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Mock API Received Data:", data);
+        resolve({ success: true, message: "اطلاعات با موفقیت آپدیت شد" });
+      }, 1000);
+    });
+  },
+};
