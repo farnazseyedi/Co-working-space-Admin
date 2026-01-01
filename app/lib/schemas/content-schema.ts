@@ -26,3 +26,13 @@ export interface HeroBannerData {
   subtitle: string;
   imageUrl: string;
 }
+export interface ContactWays {
+  id: number;
+  Address: string;
+  firstPhoneNumber: string;
+  secondPhoneNumber: string;
+  bale: string;
+  instagram: string;
+  linkedin: string;
+  webSite: string;
+}

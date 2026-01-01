@@ -8,7 +8,7 @@ import {
   featuresAndGallerySchema,
   FormValues,
 } from "@/app/lib/schemas/content-schema";
-import { MOCK_DATA } from "@/app/services/mock/features-gallery-service";
+import { MOCK_DATA } from "@/app/services/mock/content-service";
 import { FeaturesSection } from "@/app/components/Content-comps/features";
 import { GallerySection } from "@/app/components/Content-comps/gallery-section";
 

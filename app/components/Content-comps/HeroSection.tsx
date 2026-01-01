@@ -23,31 +23,48 @@ import {
 } from "@/app/components/ui/card";
 
 import heroBannerImg from "@/images/heroBanner.jpg";
-import edit from "@/icons/edit.svg";
+
+import { Mock } from "node:test";
+
 import upload from "@/icons/upload.svg";
 import trash from "@/icons/trash.svg";
+import { MOCK } from "@/app/services/mock/content-service";
 
-export default function HeroSection() {
+interface HeroBannerProps {
+  editMode: boolean;
+}
+
+export default function HeroSection({ editMode }: HeroBannerProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [newFilePreview, setNewFilePreview] = useState<string | null>(null);
-  const { control, setValue, watch, formState: { errors } } = useFormContext();
+  const {
+    control,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext();
   const watchedImage = watch("heroSection.image");
-  const displayImage = newFilePreview || (typeof watchedImage === 'string' ? watchedImage : null);
-
+  const displayImage =
+    newFilePreview || (typeof watchedImage === "string" ? watchedImage : null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-    
       const objectUrl = URL.createObjectURL(file);
       setNewFilePreview(objectUrl);
-      setValue("heroSection.image", file, { shouldDirty: true, shouldValidate: true });
+      setValue("heroSection.image", file, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
     }
   };
 
   const handleDeleteImage = () => {
     setNewFilePreview(null);
-    setValue("heroSection.image", null, { shouldDirty: true, shouldValidate: true }); 
+    setValue("heroSection.image", null, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -74,9 +91,16 @@ export default function HeroSection() {
         <CardContent className="px-0">
           <div className="space-y-8">
             <div className="flex flex-col md:flex-row gap-6 items-start">
-              
               <div className="flex-1 space-y-21 order-2 md:order-2 w-full">
-                <div className="space-y-2 text-sm text-neutral-400 text-right pt-3">
+                <div
+                  className={`
+                    ${
+                      editMode
+                        ? "space-y-2 text-sm text-neutral-400 text-right pt-3"
+                        : "invisible"
+                    }
+                    `}
+                >
                   <p>فرمت عکس JPG</p>
                   <p>ابعاد 1440*810</p>
                   <p>حجم حداکثر 10 مگابایت</p>
@@ -94,7 +118,11 @@ export default function HeroSection() {
                     <Button
                       type="button"
                       variant="outline"
-                      className="w-55 h-12 text-md text-primary-500 border-primary-500 hover:bg-primary-200 hover:border-none"
+                      className={`${
+                        editMode
+                          ? "w-55 h-12 text-md text-primary-500 border-primary-500 hover:bg-primary-200 hover:border-none"
+                          : "invisible"
+                      }`}
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <Image
@@ -107,9 +135,13 @@ export default function HeroSection() {
                     <Button
                       type="button"
                       variant="ghost"
-                      className="text-md text-primary-500 hover:text-primary-400"
+                      className={`${
+                        editMode
+                          ? "text-md text-primary-500 hover:text-primary-400"
+                          : "invisible"
+                      }`}
                       onClick={handleDeleteImage}
-                      disabled={!displayImage} 
+                      disabled={!displayImage}
                     >
                       <Image src={trash} alt="trash" className="w-5 h-5 " />
                       حذف
@@ -117,8 +149,6 @@ export default function HeroSection() {
                   </div>
                 </div>
               </div>
-
-              
               <div className="w-full md:w-100 h-55 bg-neutral-100 rounded-xl overflow-hidden relative border border-neutral-200 order-1 md:order-1">
                 {displayImage ? (
                   <Image
@@ -129,34 +159,32 @@ export default function HeroSection() {
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-neutral-400">
-                    <Image src={heroBannerImg} alt="hero" fill className="object-cover"/>
+                    <Image
+                      src={heroBannerImg}
+                      alt="hero"
+                      fill
+                      className="object-cover"
+                    />
                     {/* <ImageIcon className="w-12 h-12 mb-2 opacity-50" />
                     <span>تصویری انتخاب نشده</span> */}
                   </div>
                 )}
               </div>
             </div>
-
             <div className="space-y-6">
               <FormField
                 control={control}
                 name="heroSection.title"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className={`${editMode ? "" : "hidden"}`}>
                     <FormLabel>جمله اول بنر اصلی</FormLabel>
                     <FormControl>
                       <div className="relative flex w-140">
                         <Input
                           {...field}
-                          value={field.value ?? ""} 
+                          value={field.value ?? ""}
+                          placeholder={MOCK.title}
                           className="pl-10 h-12 text-neutral-400 border-neutral-400"
-                        />
-                        <Image
-                          src={edit}
-                          alt="edit"
-                          width={24}
-                          height={24}
-                          className="absolute left-3 top-3 text-neutral-400"
                         />
                       </div>
                     </FormControl>
@@ -168,21 +196,15 @@ export default function HeroSection() {
                 control={control}
                 name="heroSection.subtitle"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className={`${editMode ? "" : "hidden"}`}>
                     <FormLabel>جمله دوم بنر اصلی</FormLabel>
                     <FormControl>
                       <div className="relative w-140">
                         <Input
                           {...field}
                           value={field.value ?? ""}
+                          placeholder={MOCK.subtitle}
                           className="pl-10 h-12 text-neutral-400 border-neutral-400"
-                        />
-                        <Image
-                          src={edit}
-                          alt="edit"
-                          width={24}
-                          height={24}
-                          className="absolute left-3 top-3 text-neutral-400"
                         />
                       </div>
                     </FormControl>

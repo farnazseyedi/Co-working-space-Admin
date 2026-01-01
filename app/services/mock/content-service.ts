@@ -22,12 +22,23 @@ export const MOCK_DATA: FormValues = {
   ],
 };
 
+export const MOCK_ContactWays : ContactWays = {
+  id:1,
+  Address:"بزرگراه شهید قاسم سلیمانی،بین خیابان مدائن و میدان ۲۳،پلاک ۵۲۰",
+  firstPhoneNumber: "02177188185" ,
+  secondPhoneNumber: "02177188185" ,
+  bale :"https://web.bale.ai/chat",
+  instagram: "https://www.instagram/makeenacademy",
+  linkedin:"linkedin.com/in/makeenacademy",
+  webSite:"linkedin.com/in/makeenacademy",
+}
+
 import {
+  ContactWays,
   HeroBannerData,
-  
 } from "@/app/lib/schemas/content-schema";
 
-const MOCK: HeroBannerData = {
+export const MOCK: HeroBannerData = {
   id: 1,
   title: "فضای کار اشتراکی آکادمی مکین",
   subtitle: "فضایی که کارت نیاز داره!",

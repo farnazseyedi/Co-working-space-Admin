@@ -22,7 +22,11 @@ import { useEffect } from "react";
 import { CardTitle } from "../ui/card";
 import { Separator } from "../ui/seprator";
 
-export const GallerySection = () => {
+interface galleryProps{
+  editMode : boolean;
+}
+
+export const GallerySection = ({editMode} : galleryProps) => {
   const {
     control,
     formState: { errors },
@@ -97,7 +101,7 @@ export const GallerySection = () => {
               />
             ))}
 
-            <label className="cursor-pointer group aspect-video flex flex-col items-center justify-center rounded-xl bg-neutral-200 transition-all">
+            <label className={`${editMode ? "cursor-pointer group aspect-video flex flex-col items-center justify-center rounded-xl bg-neutral-200 transition-all" : "hidden"}`}>
               <div className="p-1 bg-neutral-200 rounded-full border-3 border-neutral-700">
                 <Plus
                   size={32}
