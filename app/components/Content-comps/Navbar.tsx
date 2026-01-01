@@ -46,7 +46,6 @@ export default function Navbar() {
               } `}
             />
           </li>
-
           <li className="relative group cursor-pointer flex flex-col items-center">
             <Link href="/content">
               <span
@@ -56,48 +55,7 @@ export default function Navbar() {
                     : "text-neutral-600 hover:text-neutral-900"
                 } `}
               >
-                مرام نامه
-              </span>
-            </Link>
-            <span
-              className={`mt-2 rounded-full transition-all duration-300 ease-out ${
-                pathname === "/content/maram"
-                  ? "w-full h-0.5 bg-primary-500"
-                  : "w-1 h-1 bg-neutral-600 group-hover:w-full group-hover:h-0.5 group-hover:bg-primary-500"
-              } `}
-            />
-          </li>
-
-          <li className="relative group cursor-pointer flex flex-col items-center">
-            <Link href="/content">
-              <span
-                className={`font-bold leading-none transition-colors${
-                  pathname === "/content"
-                    ? "text-neutral-900"
-                    : "text-neutral-600 hover:text-neutral-900"
-                } `}
-              >
-                سوالات پرتکرار
-              </span>
-            </Link>
-            <span
-              className={`mt-2 rounded-full transition-all duration-300 ease-out ${
-                pathname === "/content/questions"
-                  ? "w-full h-0.5 bg-primary-500"
-                  : "w-1 h-1 bg-neutral-600 group-hover:w-full group-hover:h-0.5 group-hover:bg-primary-500"
-              } `}
-            />
-          </li>
-          <li className="relative group cursor-pointer flex flex-col items-center">
-            <Link href="/content">
-              <span
-                className={`font-bold leading-none transition-colors${
-                  pathname === "/content"
-                    ? "text-neutral-900"
-                    : "text-neutral-600 hover:text-neutral-900"
-                } `}
-              >
-                تماس با ما
+                  فراتر از یک آکادمی
               </span>
             </Link>
             <span

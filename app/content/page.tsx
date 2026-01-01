@@ -43,10 +43,10 @@ export default function ContentManageMent() {
             <FeaturesSection editMode={editMode} />
             <GallerySection editMode={editMode} />
             <ContactWays editMode={editMode} />
-            <div className="flex justify-center p-4">
+            <div className="flex justify-center itsems-center ml-50 mt-15 p-4">
               <button
                 type="submit"
-                className="bg-primary-500 text-white px-8 py-2 rounded-md "
+                className="bg-primary-500 text-white px-8 py-2 rounded-2xl w-97 h-12"
               >
                 ذخیره تغییرات
               </button>

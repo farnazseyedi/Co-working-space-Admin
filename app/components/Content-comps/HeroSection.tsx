@@ -23,9 +23,6 @@ import {
 } from "@/app/components/ui/card";
 
 import heroBannerImg from "@/images/heroBanner.jpg";
-
-import { Mock } from "node:test";
-
 import upload from "@/icons/upload.svg";
 import trash from "@/icons/trash.svg";
 import { MOCK } from "@/app/services/mock/content-service";
