@@ -47,10 +47,10 @@ export default function Navbar() {
             />
           </li>
           <li className="relative group cursor-pointer flex flex-col items-center">
-            <Link href="/content">
+            <Link href="/content/more">
               <span
                 className={`font-bold leading-none transition-colors${
-                  pathname === "/content"
+                  pathname === "/content/more"
                     ? "text-neutral-900"
                     : "text-neutral-600 hover:text-neutral-900"
                 } `}

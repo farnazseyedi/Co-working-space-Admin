@@ -19,7 +19,7 @@ export const contentSchema = z.object({
   image: z.any().optional(),
 });
 
-export type FormValues = z.infer<typeof contentSchema>;
+
 export interface HeroBannerData {
   id: number;
   title: string;
@@ -36,3 +36,15 @@ export interface ContactWays {
   linkedin: string;
   webSite: string;
 }
+
+
+
+export const moreSchema = z.object({
+  word1: z.string().min(1, "این فیلد الزامی است"),
+  word2: z.string().min(1, "این فیلد الزامی است"),
+  word3: z.string().min(1, "این فیلد الزامی است"),
+  word4: z.string().min(1, "این فیلد الزامی است"),
+  image: z.union([z.string(), z.any()]).optional(),
+});
+export type FormValues = z.infer<typeof contentSchema>;
+export type MoreFormValues = z.infer<typeof moreSchema>;
