@@ -1,5 +1,6 @@
-import { FormValues } from "@/app/lib/schemas/features-gallery";
+import { FormValues } from "@/app/lib/schemas/content-schema";
 import gallery from "@/images/gallery.svg"
+import logo from "@/images/logo.png"
 
 export const FEATURES_OPTIONS = [
   { id: "internet", label: "اینترنت رایگان" },
@@ -20,6 +21,9 @@ export const MOCK_DATA: FormValues = {
     { id: "4", preview: gallery },
     { id: "5", preview: gallery },
   ],
+  title: "فضای کار اشتراکی آکادمی مکین",
+  subtitle: "فضایی که کارت نیاز داره!",
+  image: "/images/placeholder-hero.jpg",
 };
 
 export const MOCK_ContactWays : ContactWays = {
@@ -36,6 +40,7 @@ export const MOCK_ContactWays : ContactWays = {
 import {
   ContactWays,
   HeroBannerData,
+  MoreFormValues,
 } from "@/app/lib/schemas/content-schema";
 
 export const MOCK: HeroBannerData = {
@@ -69,4 +74,12 @@ export const heroService = {
       }, 1000);
     });
   },
+};
+
+export const CONTENT_MOCK_DATA: MoreFormValues = {
+  word1: "استخدام",
+  word2: "آینده",
+  word3: "پیشرفت",
+  word4: "شبکه‌سازی",
+  image: {logo},
 };
