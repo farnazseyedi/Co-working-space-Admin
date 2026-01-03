@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import forlogin from "../../public/Home/forlogin.png";
+import forlogin from "../../../public/Home/forlogin.png";
+import { LoginUserIcon } from "@/app/assets/icons";
+import { LockIcon } from "@/app/assets/icons";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -32,23 +34,35 @@ export default function LoginPage() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-7">
-                <input
-                  type="text"
-                  placeholder="نام کاربری"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full border border-gray-300 rounded-xl py-3 px-5 text-right
-                  focus:outline-none focus:ring-2 focus:ring-black"
-                />
+                <div className="relative">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <LoginUserIcon />
+                  </span>
 
-                <input
-                  type="password"
-                  placeholder="کلمه عبور"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded-xl py-3 px-5 text-right
-                  focus:outline-none focus:ring-2 focus:ring-black"
-                />
+                  <input
+                    type="text"
+                    placeholder="نام کاربری"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full border border-gray-300 rounded-xl py-3 pr-12 pl-5 text-right
+    focus:outline-none focus:ring-2 focus:ring-black"
+                  />
+                </div>
+
+                <div className="relative">
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                    <LockIcon />
+                  </span>
+
+                  <input
+                    type="password"
+                    placeholder="کلمه عبور"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full border border-gray-300 rounded-xl py-3 pr-12 pl-5 text-right
+    focus:outline-none focus:ring-2 focus:ring-black"
+                  />
+                </div>
 
                 <button
                   type="submit"

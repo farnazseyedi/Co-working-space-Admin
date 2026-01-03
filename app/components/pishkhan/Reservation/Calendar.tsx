@@ -101,20 +101,23 @@ export default function RangeCalendar({
 
   return (
     <div className="relative w-full" ref={inputRef}>
-      <div className="flex gap-1 mb-3">
+      <div className="flex gap-2 mb-3 h-12">
         <input
           readOnly
           value={tempStart || ""}
           placeholder="تاریخ شروع"
           onClick={() => setOpenInput("start")}
-          className="w-1/2 py-3 px-3 border rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+          className="w-70 h-full px-3 border border-neutral-300 rounded-md cursor-pointer text-sm
+               focus:outline-none focus:ring-1 focus:ring-primary-500"
         />
+
         <input
           readOnly
           value={tempEnd || ""}
           placeholder="تاریخ پایان"
           onClick={() => setOpenInput("end")}
-          className="w-1/2 py-3 px-3 border rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+          className="w-70 h-full px-3 border-neutral-300 border rounded-md cursor-pointer text-sm
+               focus:outline-none focus:ring-1 focus:ring-primary-500"
         />
       </div>
 
@@ -174,7 +177,10 @@ export default function RangeCalendar({
           </div>
 
           <button
-            onClick={onConfirm}
+            onClick={() => {
+              setOpenInput(null);
+              onConfirm?.();
+            }}
             className="mt-3 w-full py-2 bg-primary-500 text-white rounded text-sm"
           >
             تأیید

@@ -1,3 +1,5 @@
+import { PlusIcon } from "@/app/assets/icons";
+
 type BlueButtonProps = {
   onClick: () => void;
   children?: React.ReactNode;
@@ -8,8 +10,9 @@ export default function BlueButton({ onClick }: BlueButtonProps) {
     <button
       type="button"
       onClick={onClick}
-      className="border border-primary-500 hover:opacity-80 text-primary-500 px-10 py-3 rounded-lg justify-center items-center transition text-center font-medium h-11 w-55"
+      className="border flex cursor-pointer border-primary-500 hover:opacity-80 text-primary-500 px-10 py-3 rounded-lg justify-center items-center transition text-center font-medium h-11 w-55"
     >
+      <PlusIcon />
       افزودن رزرو جدید
     </button>
   );

@@ -89,7 +89,6 @@ export default function FAQ() {
   return (
     <div className="min-h-screen bg-gray-100">
       <NavigatinBar />
-
       <div className="mr-64 p-6">
         <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-center">
           <h1 className="text-neutral-800 text-xl font-bold">پیام ها</h1>

@@ -26,7 +26,7 @@ function MessageButtons() {
     <div className="flex gap-4 mt-7">
       <Link href="/notificationsList">
         <Button label="صندوق پیام‌ها" variant="secondary" />
-      </Link>{" "}
+      </Link>
       <Button label="+ پیام جدید" variant="primary" />
     </div>
   );

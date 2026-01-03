@@ -6,6 +6,8 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import DayItem from "./DayItem";
 import { days } from "../../../data/days";
+import ArrowRightIcon from "@/app/assets/icons/dashboard/ArrowRightIcon";
+import ArrowLeftIcon from "@/app/assets/icons/dashboard/ArrowLeftIcon";
 
 type Props = {
   activeIndex: number;
@@ -22,7 +24,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
           onClick={() => swiperRef.current?.slidePrev()}
           className="text-white hover:text-gray-100 transition text-lg"
         >
-          ‹
+          <ArrowRightIcon />
         </button>
       </div>
 
@@ -63,7 +65,7 @@ export default function DaySlider({ activeIndex, setActiveIndex }: Props) {
           onClick={() => swiperRef.current?.slideNext()}
           className="text-white hover:text-gray-100 transition text-lg"
         >
-          ›
+          <ArrowLeftIcon />
         </button>
       </div>
     </div>

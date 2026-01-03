@@ -1,3 +1,4 @@
+import EyeIcon from "@/app/assets/icons/dashboard/EyeIcon";
 export interface Reservation {
   id: number;
   rowNumber: number;
@@ -37,9 +38,11 @@ function TodayReservationsTable({ reservations, onDetailClick }: Props) {
                 <td className="py-4 px-4">{item.service}</td>
                 <td className="py-4 px-4">
                   <button
-                    className="w-9 h-9 rounded-full border-2 border-gray-300 mx-auto"
+                    className="w-9 h-9 rounded-full mx-auto"
                     onClick={() => onDetailClick(item)}
-                  />
+                  >
+                    <EyeIcon />
+                  </button>
                 </td>
               </tr>
             ))}

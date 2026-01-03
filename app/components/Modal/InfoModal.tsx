@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import copy from "clipboard-copy";
-
+import { CalendarIcon } from "@/app/assets/icons";
+import { ClockIcon } from "@/app/assets/icons";
+import { CloseIcon } from "@/app/assets/icons";
+import { CoinIcon } from "@/app/assets/icons";
+import { CopyIcon } from "@/app/assets/icons";
+import { UserIcon } from "@/app/assets/icons";
+import VerticalDividerIcon from "@/app/assets/icons/modal/VerticalDividerIcon";
 export interface ReservationData {
   name: string;
   date: string;
@@ -27,6 +33,7 @@ function InfoModal({ data, onClose }: Props) {
     try {
       await copy(data.transactionId);
       setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
     } catch (error) {
       console.error("Failed to copy text to clipboard", error);
     }
@@ -45,10 +52,10 @@ function InfoModal({ data, onClose }: Props) {
       <div className="bg-white rounded-xl flex flex-col w-110 h-140 p-6 relative gap-4">
         <div className="mt-1.5">
           <button
-            className="absolute top-4 right-4 text-black rounded-xl border-black px-2.5 py-0 border-2 hover:opacity-45 text-lg"
+            className="absolute top-4 right-4 px-2.5 py-0 border-none hover:opacity-45 text-lg"
             onClick={onClose}
           >
-            x
+            <CloseIcon />
           </button>
         </div>
 
@@ -56,14 +63,18 @@ function InfoModal({ data, onClose }: Props) {
           <div>
             <h2 className="text-2xl mb-6 text-right">جزئیات رزرو</h2>
           </div>
-          <div className="text-gray-400">
+          <div className="flex text-gray-400">
             {data.date}-{data.time}
+            <ClockIcon className="mt-1 mr-1" />
           </div>
         </div>
 
         <div className="space-y-4 text-ml text-right">
           <div>
-            نام و نام خانوادگی:
+            <div className="flex">
+              <UserIcon />
+              نام و نام خانوادگی:
+            </div>
             <div className="border w-47 border-gray-300 rounded-md mt-2 flex justify-center">
               {data.name}
             </div>
@@ -71,14 +82,20 @@ function InfoModal({ data, onClose }: Props) {
 
           <div className="flex mt-10">
             <div>
-              تاریخ:
-              <div className="mt-4 border border-gray-300 rounded-md flex justify-center px-4 py-0.5">
+              <div className="flex">
+                <CalendarIcon />
+                تاریخ:
+              </div>
+              <div className="mt-3 border border-gray-400 rounded-md flex justify-center px-4 py-0.5">
                 {data.date}
               </div>
             </div>
             <div className="mr-25">
-              مبلغ:
-              <div className="mt-4 border border-gray-300 rounded-md flex justify-center px-4 py-0.5">
+              <div className="flex">
+                <CoinIcon />
+                مبلغ:
+              </div>
+              <div className="mt-3 border border-gray-300 rounded-md flex justify-center px-4 py-0.5">
                 {data.amount} تومان
               </div>
             </div>
@@ -98,12 +115,26 @@ function InfoModal({ data, onClose }: Props) {
                 <div className="mt-4 border border-gray-300 rounded-md flex items-center justify-between px-4 py-0.5">
                   <div className="text-sm">{data.transactionId}</div>
                 </div>
-                <button
-                  onClick={handleCopyClick}
-                  className="text-sm text-blue-600"
-                >
-                  {isCopied ? "Copied!" : "Copy"}
-                </button>
+                <div className="relative inline-block">
+                  <div className="flex justify-center items-center mt-3.5 mr-2">
+                    <button
+                      onClick={handleCopyClick}
+                      className="text-sm text-blue-600 flex items-center gap-1 cursor-pointer"
+                    >
+                      <CopyIcon />
+                    </button>
+                  </div>
+
+                  {isCopied && (
+                    <span
+                      className="absolute -top-4 right-1/2 translate-x-1/2
+      bg-secondary-100 text-xs px-2 py-1 rounded
+      whitespace-nowrap pointer-events-none"
+                    >
+                      کپی شد
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -120,14 +151,14 @@ function InfoModal({ data, onClose }: Props) {
               </div>
             </div>
 
-            <div className="w-px h-20 bg-neutral-400 mx-4"></div>
+            <VerticalDividerIcon />
 
             <div className="flex justify-center flex-col">
               <div>کد رزرو:</div>
               <div className="mt-4 flex justify-center">{data.code}</div>
             </div>
 
-            <div className="w-px h-20 bg-neutral-400 mx-4"></div>
+            <VerticalDividerIcon />
 
             <div>
               <div>شماره همراه:</div>

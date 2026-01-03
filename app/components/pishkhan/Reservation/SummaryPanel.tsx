@@ -2,8 +2,6 @@
 
 import { toPersianNumber, formatPrice } from "../../../lib/Persian";
 import { Button } from "../../ui/Button";
-import { Card } from "../../ui/card";
-
 interface BookingSummaryProps {
   daysCount: number;
   basePrice: number;
@@ -20,17 +18,16 @@ export default function BookingSummary({
   const finalPrice = totalPrice - discount;
 
   return (
-    <div className="flex justify-center h-full w-full">
-      <Card className="w-full max-w-120 h-full p-6 border-none">
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="flex items-center justify-center text-center font-black my-1 gap-3">
-            <span className="h-px rounded-l-xl w-40 bg-linear-to-r from-primary-500 to-others-bg1"></span>
-            اطلاعات پرداخت
-            <span className="h-px rounded-l-xl w-40 bg-linear-to-l from-primary-500 to-others-bg1"></span>
-          </div>
+    <div className="flex items-center justify-center text-center font-black my-1 gap-3 text-xl whitespace-nowrap">
+      <div className="w-full max-w-120 h-full p-6 border-none">
+        <div className="flex items-center justify-center text-center font-black my-1 gap-3">
+          <span className="h-px rounded-l-xl w-40 bg-linear-to-r from-primary-500 to-others-bg1"></span>
+          اطلاعات پرداخت
+          <span className="h-px rounded-l-xl w-40 bg-linear-to-l from-primary-500 to-others-bg1"></span>
         </div>
+        <div className="flex items-center justify-center gap-4 mb-8"></div>
 
-        <div className="flex flex-col gap-2 text-sm text-neutral-500 font-medium">
+        <div className="flex flex-col gap-2 text-md text-neutral-500 font-medium">
           <div className="flex justify-between items-center">
             <span>تعداد روزهای انتخاب شده :</span>
             <span className="text-neutral-500 text-base">
@@ -45,19 +42,19 @@ export default function BookingSummary({
             </span>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-5">
             <span>تخفیف پلکانی :</span>
             <span className="text-neutral-500">هیچی</span>
           </div>
         </div>
 
-        <div className="h-px bg-neutral-400 w-full"></div>
+        <div className="h-px bg-neutral-300 w-full"></div>
 
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mt-5 mb-8">
           <span className="font-bold text-slate-900 text-base">
             مبلغ قابل پرداخت :
           </span>
-          <span className="font-bold text-slate-900 text-lg">
+          <span className="font-bold text-slate-900 text-md">
             {isLoading
               ? "در حال محاسبه..."
               : `${formatPrice(finalPrice)} تومان`}
@@ -70,7 +67,7 @@ export default function BookingSummary({
         >
           ثبت رزرو
         </Button>
-      </Card>
+      </div>
     </div>
   );
 }
