@@ -1,5 +1,8 @@
-
-import { ChartDataPoint, DashboardStat, Transaction } from "@/app/lib/types/payment";
+import {
+  ChartDataPoint,
+  DashboardStat,
+  Transaction,
+} from "@/app/lib/types/payment";
 
 export const MOCK_STATS: DashboardStat[] = [
   {
@@ -33,7 +36,7 @@ export const MOCK_STATS: DashboardStat[] = [
     id: "cancelled",
     title: "تعداد رزرو لغو شده",
     value: 18003000,
-    formattedValue:  "1 نفر",
+    formattedValue: "1 نفر",
     trend: 0.8,
     isIncrease: false,
     icon: "cancell",
@@ -42,12 +45,18 @@ export const MOCK_STATS: DashboardStat[] = [
 
 export const MOCK_CHART_DATA: Record<string, ChartDataPoint[]> = {
   monthly: [
-    { name: "فروردین", value: 40000000 },
-    { name: "اردیبهشت", value: 30000000 },
-    { name: "خرداد", value: 50000000 },
-    { name: "تیر", value: 45000000 },
-    { name: "مرداد", value: 80000000 },
-    { name: "شهریور", value: 60000000 },
+    { name: "فروردین", value: 400000 },
+    { name: "اردیبهشت", value: 150000 },
+    { name: "خرداد", value: 300000 },
+    { name: "تیر", value: 320000 },
+    { name: "مرداد", value: 500000 },
+    { name: "شهریور", value: 700000 },
+    { name: "مهر", value: 900000 },
+    { name: "آبان", value: 1000000 },
+    { name: "آذر", value: 700000 },
+    { name: "دی", value: 850000 },
+    { name: "بهمن", value: 700000 },
+    { name: "اسفند", value: 810000 },
   ],
   weekly: [
     { name: "شنبه", value: 100 },
@@ -59,7 +68,10 @@ export const MOCK_CHART_DATA: Record<string, ChartDataPoint[]> = {
     { name: "جمعه", value: 700 },
   ],
 };
-
+export interface TooltipPayloadItem {
+  value: number;
+  payload: ChartDataPoint;
+}
 export const MOCK_TRANSACTIONS: Transaction[] = Array.from({ length: 20 }).map(
   (_, i) => ({
     id: `trx-${i}`,
