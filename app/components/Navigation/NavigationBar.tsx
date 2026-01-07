@@ -29,7 +29,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   { title: "تخفیف‌ها", href: "/discounts", Icon: Icons.DiscountIcon },
-  { title: "مدیریت محتوا", href: "/content", Icon: Icons.GalleryIcon },
+  { title: "مدیریت محتوا", href: "/pages/content", Icon: Icons.GalleryIcon },
 ];
 
 export default function Sidebar() {

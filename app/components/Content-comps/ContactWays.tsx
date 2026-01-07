@@ -18,10 +18,7 @@ interface ContactWaysProps {
 }
 
 export default function ContactWays({ editMode }: ContactWaysProps) {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <div className="w-full">
@@ -32,8 +29,8 @@ export default function ContactWays({ editMode }: ContactWaysProps) {
         <Separator className="flex-1 bg-neutral-400" />
       </div>
 
-      <div className="flex flex-col mt-8 w-[895px]">
-        <div className="mb-6 w-[895px]">
+      <div className="flex flex-col mt-8 w-223.75">
+        <div className="mb-6 w-223.75">
           <FormField
             control={control}
             name="address.title"

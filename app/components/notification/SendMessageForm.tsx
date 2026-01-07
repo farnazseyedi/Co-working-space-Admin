@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import Checkbox from "./Checkbox";
+import { FeatureCheckbox } from "./CheckBox";
+import Image from "next/image";
 
 type User = {
   id: string;
@@ -57,11 +58,13 @@ export default function SendMessageForm() {
   return (
     <>
       <form className="space-y-6 p-6" onSubmit={handleSubmit}>
-        <Checkbox
-          label="ارسال به همه کاربران"
-          value={agree}
-          onChange={setAgree}
-        />
+        <div className="text-xl">ارسال پیام </div>
+        <div className="flex items-center gap-2">
+          <FeatureCheckbox value={agree} onChange={setAgree} />
+          <span className="text-sm">ارسال به همه کاربران</span>
+        </div>
+
+        <div className="h-px bg-gray-300 my-3 w-full"></div>
         <div className="grid grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium">نام کاربری</label>
@@ -145,7 +148,7 @@ export default function SendMessageForm() {
           </div>
 
           <div>
-            <label className="block text-xl font-medium">متن پیام</label>
+            <label className="block text-sm font-medium">متن پیام</label>
             <textarea
               placeholder="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است."
               value={messageText}
@@ -168,8 +171,9 @@ export default function SendMessageForm() {
         <div className="flex gap-3">
           <button
             type="submit"
-            className="bg-primary-500 text-white px-4 py-2 rounded hover:opacity-80"
+            className="flex gap-1 bg-primary-500 text-white px-4 py-2 rounded hover:opacity-80"
           >
+            <Image src="/icons/send.svg" alt="send" width={20} height={20} />
             ارسال پیام
           </button>
           <button

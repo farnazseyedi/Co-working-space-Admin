@@ -27,7 +27,9 @@ const FORM_FIELDS = [
 ] as const;
 
 export default function ContentManagement() {
-  const [activeField, setActiveField] = useState<keyof MoreFormValues | null>(null);
+  const [activeField, setActiveField] = useState<keyof MoreFormValues | null>(
+    null
+  );
 
   const {
     register,
@@ -99,7 +101,12 @@ export default function ContentManagement() {
                               onClick={() => handleEditClick(field.id)}
                               className="text-neutral-400 hover:text-primary-600 p-1 flex justify-center items-center transition-colors"
                             >
-                              <Image src={edit} alt="edit" width={18} height={18} />
+                              <Image
+                                src={edit}
+                                alt="edit"
+                                width={18}
+                                height={18}
+                              />
                             </button>
                           )}
                         </div>
@@ -125,11 +132,7 @@ export default function ContentManagement() {
                   disabled={!isDirty || isSubmitting}
                   className="w-36.75 h-12 bg-primary-500 hover:bg-primary-700 text-white rounded-xl shadow-lg transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <Loader2 />
-                  ) : (
-                    "ثبت تغییرات"
-                  )}
+                  {isSubmitting ? <Loader2 /> : "ثبت تغییرات"}
                 </Button>
               </div>
             </div>

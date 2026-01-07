@@ -5,7 +5,7 @@ import AddFAQModal from "../Modal/AddFAQModal";
 import { FAQItem } from "./F&Q";
 import PenIcon from "@/app/assets/icons/contentManagement/PenIcon";
 import TrashIcon from "@/app/assets/icons/contentManagement/TrashIcon";
-import Checkbox from "@mui/material/Checkbox";
+import { FeatureCheckbox } from "../notification/CheckBox";
 import { PlusIcon } from "@/app/assets/icons";
 import IOSSwitch from "../../components/F&Q/Toggle";
 
@@ -28,6 +28,13 @@ export default function FAQAccordion({ data }: FAQAccordionProps) {
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [openModal, setOpenModal] = useState(false);
+
+  const [modalData, setModalData] = useState({
+    question: "",
+    answer: "",
+    publishMain: false,
+    publishPopular: false,
+  });
 
   const [items, setItems] = useState<FAQItem[]>(
     safeData.map((item) => ({
@@ -212,33 +219,25 @@ export default function FAQAccordion({ data }: FAQAccordionProps) {
               </div>
 
               <div className="flex gap-4 mt-8">
-                <label className="flex items-center text-sm gap-1">
-                  <Checkbox
-                    checked={!!item.publishMain}
-                    onChange={(e) =>
-                      toggleField("publishMain", index, e.target.checked)
+                <div className="flex items-center gap-2 text-sm">
+                  <FeatureCheckbox
+                    value={!!item.publishMain}
+                    onChange={(value) =>
+                      toggleField("publishMain", index, value)
                     }
-                    sx={{
-                      color: "#dbeafe",
-                      "&.Mui-checked": { color: "#1e40af" },
-                    }}
                   />
-                  انتشار در صفحه اصلی
-                </label>
+                  <span>انتشار در صفحه اصلی</span>
+                </div>
 
-                <label className="flex items-center text-sm gap-1">
-                  <Checkbox
-                    checked={!!item.publishPopular}
-                    onChange={(e) =>
-                      toggleField("publishPopular", index, e.target.checked)
+                <div className="flex items-center gap-2 text-sm">
+                  <FeatureCheckbox
+                    value={!!item.publishPopular}
+                    onChange={(value) =>
+                      toggleField("publishPopular", index, value)
                     }
-                    sx={{
-                      color: "#dbeafe",
-                      "&.Mui-checked": { color: "#1e40af" },
-                    }}
                   />
-                  انتشار در سوالات پرتکرار
-                </label>
+                  <span>انتشار در سوالات پرتکرار</span>
+                </div>
               </div>
 
               <div className="flex justify-between gap-3 mt-6 mb-5">
@@ -276,8 +275,30 @@ export default function FAQAccordion({ data }: FAQAccordionProps) {
       <AddFAQModal
         open={openModal}
         onClose={() => setOpenModal(false)}
+        question={modalData.question}
+        answer={modalData.answer}
+        publishMain={modalData.publishMain}
+        publishPopular={modalData.publishPopular}
+        onQuestionChange={(val) =>
+          setModalData((prev) => ({ ...prev, question: val }))
+        }
+        onAnswerChange={(val) =>
+          setModalData((prev) => ({ ...prev, answer: val }))
+        }
+        onPublishMainChange={(val) =>
+          setModalData((prev) => ({ ...prev, publishMain: val }))
+        }
+        onPublishPopularChange={(val) =>
+          setModalData((prev) => ({ ...prev, publishPopular: val }))
+        }
         onSave={(data) => {
           addNewFAQ(data);
+          setModalData({
+            question: "",
+            answer: "",
+            publishMain: false,
+            publishPopular: false,
+          });
           setOpenModal(false);
         }}
       />

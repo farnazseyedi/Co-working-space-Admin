@@ -4,14 +4,16 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/Button";
 import { Upload } from "lucide-react";
-import logo from "@/images/logo.png"
 
 interface ImageSectionProps {
-  initialImage?:string;
+  initialImage?: string;
   onImageChange: (file: File) => void;
 }
 
-export function ImageSection({ initialImage, onImageChange }: ImageSectionProps) {
+export function ImageSection({
+  initialImage,
+  onImageChange,
+}: ImageSectionProps) {
   const [preview, setPreview] = useState<string | null>(initialImage || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,17 +29,24 @@ export function ImageSection({ initialImage, onImageChange }: ImageSectionProps)
     <div className="flex flex-col gap-4">
       <div className="relative h-109.5 w-73 rounded-xl overflow-hidden flex items-center justify-center">
         {preview ? (
-          <Image src={preview} alt="Preview" fill className="object-contain p-1" />
+          <Image
+            src={preview}
+            alt="Preview"
+            fill
+            className="object-contain p-1"
+          />
         ) : (
-          <div className="text-primary-400"><Upload size={48} /></div>
+          <div className="text-primary-400">
+            <Upload size={48} />
+          </div>
         )}
       </div>
-      <input 
-        type="file" 
-        className="hidden" 
-        ref={fileInputRef} 
-        onChange={handleChange} 
-        accept="image/*" 
+      <input
+        type="file"
+        className="hidden"
+        ref={fileInputRef}
+        onChange={handleChange}
+        accept="image/*"
       />
       <Button
         type="button"

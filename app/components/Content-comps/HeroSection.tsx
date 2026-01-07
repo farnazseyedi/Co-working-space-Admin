@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 
 import { Button } from "@/app/components/ui/Button";
@@ -34,12 +33,7 @@ interface HeroBannerProps {
 export default function HeroSection({ editMode }: HeroBannerProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [newFilePreview, setNewFilePreview] = useState<string | null>(null);
-  const {
-    control,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useFormContext();
+  const { control, setValue, watch } = useFormContext();
   const watchedImage = watch("heroSection.image");
   const displayImage =
     newFilePreview || (typeof watchedImage === "string" ? watchedImage : null);

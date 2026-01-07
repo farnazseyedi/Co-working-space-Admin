@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Checkbox from "@mui/material/Checkbox";
-import { useTheme } from "@mui/material/styles";
 import PlusPicIcon from "@/app/assets/icons/contentManagement/PlusPicIcon";
+import { FeatureCheckbox } from "../notification/CheckBox";
 
 type AddFAQModalProps = {
   open: boolean;
@@ -14,28 +12,34 @@ type AddFAQModalProps = {
     publishMain: boolean;
     publishPopular: boolean;
   }) => void;
+  publishMain: boolean;
+  publishPopular: boolean;
+  onPublishMainChange: (val: boolean) => void;
+  onPublishPopularChange: (val: boolean) => void;
+  question: string;
+  answer: string;
+  onQuestionChange: (val: string) => void;
+  onAnswerChange: (val: string) => void;
 };
 
 export default function AddFAQModal({
   open,
   onClose,
   onSave,
+  publishMain,
+  publishPopular,
+  onPublishMainChange,
+  onPublishPopularChange,
+  question,
+  answer,
+  onQuestionChange,
+  onAnswerChange,
 }: AddFAQModalProps) {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [publishMain, setPublishMain] = useState(false);
-  const [publishPopular, setPublishPopular] = useState(false);
-  const theme = useTheme();
-
   if (!open) return null;
 
   const handleSave = () => {
     onSave({ question, answer, publishMain, publishPopular });
-
-    setQuestion("");
-    setAnswer("");
-    setPublishMain(false);
-    setPublishPopular(false);
+    onClose();
   };
 
   return (
@@ -43,12 +47,13 @@ export default function AddFAQModal({
       <div className="bg-white rounded-xl w-full max-w-3xl px-5 py-2">
         <div className="text-xl font-extrabold mb-3">افزودن سوال جدید</div>
         <div className="my-3 h-px bg-neutral-300" />
+
         <div className="space-y-4">
           <div className="relative w-full">
             <label className="block text-sm mb-1">سوال</label>
             <input
               value={question}
-              onChange={(e) => setQuestion(e.target.value)}
+              onChange={(e) => onQuestionChange(e.target.value)}
               className="w-full border border-neutral-400 rounded-md pl-10 px-3 py-2"
             />
             <div className="absolute left-2 top-11 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-700 cursor-pointer">
@@ -60,7 +65,7 @@ export default function AddFAQModal({
             <label className="block text-sm mb-1">جواب</label>
             <input
               value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
+              onChange={(e) => onAnswerChange(e.target.value)}
               className="w-full border border-neutral-400 rounded-md pl-10 py-2"
             />
             <div className="absolute left-2 top-11 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-700 cursor-pointer">
@@ -68,34 +73,22 @@ export default function AddFAQModal({
             </div>
           </div>
 
-          <div className="flex gap-4">
-            <label className="flex items-center gap-1 text-sm">
-              <Checkbox
-                checked={publishMain}
-                onChange={(e) => setPublishMain(e.target.checked)}
-                sx={{
-                  color: "#dbeafe",
-                  "&.Mui-checked": {
-                    color: "#1e40af",
-                  },
-                }}
+          <div className="flex gap-4 mt-8">
+            <div className="flex items-center gap-2 text-sm">
+              <FeatureCheckbox
+                value={publishMain}
+                onChange={onPublishMainChange}
               />
-              انتشار در صفحه اصلی
-            </label>
+              <span>انتشار در صفحه اصلی</span>
+            </div>
 
-            <label className="flex items-center gap-1 text-sm">
-              <Checkbox
-                checked={publishPopular}
-                onChange={(e) => setPublishPopular(e.target.checked)}
-                sx={{
-                  color: "#dbeafe",
-                  "&.Mui-checked": {
-                    color: "#1e40af",
-                  },
-                }}
+            <div className="flex items-center gap-2 text-sm">
+              <FeatureCheckbox
+                value={publishPopular}
+                onChange={onPublishPopularChange}
               />
-              انتشار در سوالات پرتکرار
-            </label>
+              <span>انتشار در سوالات پرتکرار</span>
+            </div>
           </div>
         </div>
 
