@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import NavigatinBar from "../../components/Navigation/NavigationBar";
-import PersianCalendar from "../../components/pishTable/PersianCalendar";
+import PersianCalendar from "../../components/pishkhan/pishTable/PersianCalendar";
 import BlueButton from "../../components/Button/BlueButton";
-import DaySlider from "../../components/DaySlider/DaySlider";
+import DaySlider from "../../components/pishkhan/DaySlider/DaySlider";
 import ReservationModal from "../../components/Modal/ReservationModal";
+import HomeIcon from "@/app/assets/icons/header/HomeIcon";
+import VectorIcon from "@/app/assets/icons/header/VectorIcon";
 
 export default function Dashboard() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,8 +21,18 @@ export default function Dashboard() {
       <NavigatinBar />
 
       <div className="mr-64 p-6">
-        <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-center">
-          <h1 className="text-lg font-bold">پیشخوان</h1>
+        <header className="bg-white shadow-sm px-6 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-bold">پیشخوان</h1>
+          </div>
+          <div className="flex gap-8">
+            <div>
+              <HomeIcon />
+            </div>
+            <div>
+              <VectorIcon />
+            </div>
+          </div>
         </header>
         <div className="flex justify-between items-center mt-8">
           <div className="font-semibold text-2xl">چهارشنبه ۱۵ مهر ۱۴۰۴</div>
@@ -37,7 +49,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="h-px bg-gray-400 my-5 w-full"></div>
+        <div className="h-px bg-neutral-400 my-5 w-full"></div>
 
         <div className="mt-6 space-y-4">
           <DaySlider

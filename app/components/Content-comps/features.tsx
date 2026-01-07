@@ -66,7 +66,7 @@ export const FeaturesSection = ({ editMode }: FeaturesSectionProps) => {
                       }
                     }}
                     className={cn(
-                      "cursor-pointer select-none flex items-center gap-2 px-4 py-3 rounded-sm border transition-all duration-200 text-sm font-medium min-w-[140px] justify-center",
+                      "cursor-pointer select-none flex items-center gap-2 px-4 py-3 rounded-sm border transition-all duration-200 text-sm font-medium min-w-35 justify-center",
                       isChecked
                         ? "bg-primary-200 border-none text-neutral-900"
                         : "border-neutral-400 bg-neutral-100 text-neutral-900 hover:border-neutral-300"

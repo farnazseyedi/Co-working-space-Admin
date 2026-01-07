@@ -6,3 +6,6 @@ export const toPersianNumber = (n: number | string): string => {
 export const formatPrice = (price: number): string => {
   return toPersianNumber(price.toLocaleString());
 };
+export function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(" ");
+}
