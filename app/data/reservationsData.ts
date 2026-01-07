@@ -1,4 +1,4 @@
-import { Reservation } from "../components/pishTable/TodayReservationsTable";
+import { Reservation } from "../components/pishkhan/pishTable/TodayReservationsTable";
 
 export const reservationsByDay: Record<string, Reservation[]> = {
   "07/15": [
