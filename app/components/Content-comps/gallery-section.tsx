@@ -71,7 +71,7 @@ export const GallerySection = ({ editMode }: galleryProps) => {
         if (field.file) URL.revokeObjectURL(field.preview);
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   return (

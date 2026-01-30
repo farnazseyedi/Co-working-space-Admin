@@ -18,6 +18,7 @@ export default function Navbar() {
           <div>
             <HomeIcon />
           </div>
+          <span className="bg-neutral-200 w-px h-6"></span>
           <div>
             <VectorIcon />
           </div>

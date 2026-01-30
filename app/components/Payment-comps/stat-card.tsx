@@ -17,9 +17,7 @@ const iconMap = {
 };
 
 interface StatCardProps {
-  data: DashboardStat;
-  
-  
+  data: DashboardStat; 
 }
 
 export function StatCard({ data }: StatCardProps) {
@@ -61,7 +59,7 @@ export function StatCard({ data }: StatCardProps) {
     >
       <TrendIcon className="h-3 w-3" />
       <span>{data.trend}%</span>
-      <span className=" font-normal mr-1">
+      <span className="font-normal mr-1">
         {data.isIncrease ? "افزایش" : "کاهش"} نسبت به ماه گذشته
       </span>
     </div>
