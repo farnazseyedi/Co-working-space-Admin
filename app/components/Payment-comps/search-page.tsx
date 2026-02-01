@@ -11,13 +11,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/app/components/ui/dialog";
-
 import { convertToDate } from "@/app/utils/convertDate";
-import PersianCalendar from "../pishkhan/pishTable/PersianCalendar";
-import InfoModal from "../Modal/InfoModal";
 
 export default function SearchPage() {
-  const [filters, setFilters] = useState({
+  const [inputFilters, setInputFilters] = useState({
+    fullName: "",
+    userName: "",
+    price: "",
+    fromDate: "",
+    toDate: "",
+  });
+
+  const [appliedFilters, setAppliedFilters] = useState({
     fullName: "",
     userName: "",
     price: "",
@@ -28,22 +33,30 @@ export default function SearchPage() {
   const [selectedUser, setSelectedUser] = useState<UserData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleFilterChange = (key: string, value: string) => {
-    const newValue = value === "all" ? "" : value;
-    setFilters((prev) => ({ ...prev, [key]: newValue }));
+  const handleInputChange = (key: string, value: string) => {
+    setInputFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleApplyFilter = () => {
+    setAppliedFilters(inputFilters);
   };
 
   const handleReset = () => {
-    setFilters({
+    const emptyState = {
       fullName: "",
       userName: "",
       price: "",
       fromDate: "",
       toDate: "",
-    });
+    };
+    setInputFilters(emptyState);
+    setAppliedFilters(emptyState);
   };
+
   const filteredData = useMemo(() => {
     return MOCK_DATA.filter((user) => {
+      const filters = appliedFilters;
+
       const matchesName =
         !filters.fullName ||
         user.fullName.toLowerCase().includes(filters.fullName.toLowerCase());
@@ -53,18 +66,22 @@ export default function SearchPage() {
         user.userName.toLowerCase().includes(filters.userName.toLowerCase());
 
       const matchesPrice =
-        !filters.price || String(user.price) === String(filters.price);
+        !filters.price || String(user.price).includes(String(filters.price));
 
       const userDate = convertToDate(user.date);
       if (!userDate) return false;
+
       const fromDate = convertToDate(filters.fromDate);
       const toDate = convertToDate(filters.toDate);
+
       let matchesFromDate = true;
       let matchesToDate = true;
-      if(fromDate){
+
+      if (fromDate) {
         matchesFromDate = userDate >= fromDate;
       }
-      if(toDate){
+      if (toDate) {
+        toDate.setHours(23, 59, 59);
         matchesToDate = userDate <= toDate;
       }
 
@@ -76,7 +93,7 @@ export default function SearchPage() {
         matchesFromDate
       );
     });
-  }, [filters]);
+  }, [appliedFilters]);
 
   const handleViewDetails = (user: UserData) => {
     setSelectedUser(user);
@@ -84,18 +101,22 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 p-8" dir="rtl">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-          لیست اخرین تراکنش ها
-        </h1>
+    <div className="min-h-screen bg-others-white1 shadow-lg rounded-xl p-8 ">
+      <div className="max-w-350 mx-auto space-y-6">
+        <div className="flex justify-between items-center mb-4">
+          <div></div>
+        </div>
 
         <SearchFilters
-          filters={filters}
-          onFilterChange={handleFilterChange}
+          filters={inputFilters}
+          onFilterChange={handleInputChange}
+          onApply={handleApplyFilter}
           onReset={handleReset}
         />
-
+        <h1 className="text-xl font-bold text-neutral-900">
+          لیست آخرین تراکنش‌ها
+        </h1>
+        
         <UsersTable data={filteredData} onViewDetails={handleViewDetails} />
       </div>
 
@@ -104,11 +125,6 @@ export default function SearchPage() {
           <DialogHeader>
             <DialogTitle>جزئیات کاربر</DialogTitle>
           </DialogHeader>
-          {selectedUser && (
-            <div className="space-y-4 py-4 text-right">
-             
-            </div>
-          )}
         </DialogContent>
       </Dialog>
     </div>

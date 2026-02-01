@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Table,
   TableBody,
@@ -8,12 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/components/ui/table";
-
 import { Button } from "@/app/components/ui/Button";
-import { Eye } from "lucide-react";
+import EyeIcon from "@/app/assets/icons/dashboard/EyeIcon";
 import { UserData } from "@/app/services/mock/payment-service";
-
-import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { toPersianNumber } from "@/app/lib/Persian";
+import {
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useState, useMemo } from "react";
 import { convertToDate } from "@/app/utils/convertDate";
 import InfoModal from "../Modal/InfoModal";
@@ -24,7 +28,7 @@ interface UsersTableProps {
   onViewDetails: (user: UserData) => void;
 }
 
-export function UsersTable({ data}: UsersTableProps) {
+export function UsersTable({ data }: UsersTableProps) {
   const [sortDir, setSortDir] = useState<"asc" | "desc" | null>(null);
   const [page, setPage] = useState(1);
   const [selectedUser, setSelectedUser] = useState<ReservationData | null>(
@@ -62,69 +66,104 @@ export function UsersTable({ data}: UsersTableProps) {
 
   if (data.length === 0) {
     return (
-      <div className="text-center py-10 border rounded-xl bg-gray-50 text-gray-500">
+      <div className="text-center py-10 border rounded-xl bg-neutral-100 text-neutral-500">
         هیچ نتیجه‌ای یافت نشد.
       </div>
     );
   }
-
   return (
-    <div className="rounded-xl border shadow-sm overflow-hidden bg-white">
+    <div className="rounded-xl shadow-sm overflow-hidden bg-white">
       <Table>
-        <TableHeader className="bg-secondary-200">
-          <TableRow>
-            <TableHead className="text-right">نام کاربری</TableHead>
-            <TableHead className="text-right"> نام و نام خانوادگی</TableHead>
-            <TableHead className="text-right">مبلغ</TableHead>
+        <TableHeader className="bg-secondary-100">
+          <TableRow className="hover:bg-orange-50/50 border-b border-gray-100">
+            <TableHead className="text-right py-4 font-bold text-neutral-900">
+              نام کاربری
+            </TableHead>
+            <TableHead className="text-right py-4 font-bold text-neutral-900">
+              نام و نام خانوادگی
+            </TableHead>
+            <TableHead className="text-right py-4 font-bold text-neutral-900">
+              مبلغ<span className="text-neutral-600 text-xs">(تومان)</span>
+            </TableHead>
             <TableHead
-              className="text-right cursor-pointer select-none"
+              className="text-right cursor-pointer select-none py-4 font-bold text-neutral-900"
               onClick={toggleSort}
             >
               <div className="flex items-center gap-2">
                 تاریخ
                 {sortDir === null && (
-                  <ArrowUpDown className="w-4 h-4 opacity-40" />
+                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
+                    <span className="text-xs flex flex-col justify-center pr-0.5">
+                      A-Z
+                    </span>
+                    <ArrowUpDown className="" />
+                  </div>
                 )}
                 {sortDir === "asc" && (
-                  <ArrowUp className="w-4 h-4 text-primary-400" />
+                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
+                    <span className="text-xs flex flex-col justify-center pr-0.5">
+                      A-Z
+                    </span>
+                    <ArrowUp className="" />
+                  </div>
                 )}
                 {sortDir === "desc" && (
-                  <ArrowDown className="w-4 h-4 text-primary-400" />
+                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
+                    <span className="text-xs flex flex-col justify-center pr-0.5">
+                      A-Z
+                    </span>
+                    <ArrowDown className="" />
+                  </div>
                 )}
               </div>
             </TableHead>
-            <TableHead className="text-center">جزییات</TableHead>
+            <TableHead className="text-center py-4 font-bold text-neutral-900">
+              جزئیات
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {paginatedData.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.userName}</TableCell>
-              <TableCell>{user.fullName}</TableCell>
-              <TableCell>{user.price}</TableCell>
-              <TableCell>{user.date}</TableCell>
-              <TableCell className="text-center">
+            <TableRow
+              key={user.id}
+              className="even:bg-gray-50 hover:bg-gray-100 border-b border-gray-50 transition-colors"
+            >
+              <TableCell className="py-4 font-medium text-neutral-900">
+                {toPersianNumber(user.userName)}
+              </TableCell>
+              <TableCell className="py-4 text-neutral-900 font-medium">
+                {user.fullName}
+              </TableCell>
+              <TableCell className="py-4 text-neutral-900">
+                {toPersianNumber(user.price)}
+              </TableCell>
+              <TableCell className="py-4 text-neutral-900">
+                {toPersianNumber(user.date)}
+              </TableCell>
+              <TableCell className="text-center py-4">
                 <Button
                   size="icon"
+                  variant="ghost"
+                  className="hover:bg-gray-200 rounded-full w-8 h-8"
                   onClick={() => {
-                    const modalData = {
+                    const modalData: ReservationData = {
                       name: user.fullName,
                       transactionId: user.userName,
                       trackingNumber: user.userName,
                       phone: user.phone,
                       status: user.status,
-                      code: user.id,
+                      code: String(user.id),
                       date: user.date,
                       amount: user.price,
+                      time: "-",
                     };
 
-                    setSelectedUser(modalData as any);
+                    setSelectedUser(modalData);
                     setIsInfoOpen(true);
                   }}
                   title="مشاهده جزئیات"
-                  className="text-neutral-500 hover:text-secondary-600"
                 >
-                  <Eye className="w-5 h-5" />
+                  <EyeIcon />
                 </Button>
               </TableCell>
             </TableRow>
@@ -132,47 +171,59 @@ export function UsersTable({ data}: UsersTableProps) {
         </TableBody>
       </Table>
 
-      <div className="flex items-center justify-center gap-3 p-4 border-t bg-gray-50">
-        <span className="text-sm text-gray-600">
-          {totalPages} - {page}
+      <div className="flex p-4 bg-white">
+        <span className="text-sm text-gray-400">
+          {toPersianNumber((page - 1) * pageSize + 1)} -{" "}
+          {toPersianNumber(Math.min(page * pageSize, sortedData.length))}
         </span>
 
-        <div className="flex gap-2 space-x-5 text-center">
+        <div className="flex items-center justify-center gap-2 flex-1">
           <Button
-            variant="outline"
-            size="sm"
+            variant="ghost"
+            size="icon"
+            className="w-8 h-8 rounded-lg hover:bg-gray-100 disabled:opacity-30"
             disabled={page === 1}
-            onClick={() => setPage((p) => p - 1)}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
           >
-            قبلی
+            <ChevronRight className="w-5 h-5 text-gray-500" />
           </Button>
-          <div className="flex gap-3 justify-center ">
-            <p
-              className="opacity-50 rounded-lg w-8 h-8 hover:bg-primary-300"
-              onClick={() => setPage((p) => p - 1)}
-            >
-              {page - 1}
-            </p>
-            <p className="bg-primary-300 rounded-lg w-8 h-8 justify-center align-bottom text-center">
-              {page}
-            </p>
-            <p
-              className="opacity-50 rounded-lg w-8 h-8 hover:bg-primary-300"
-              onClick={() => setPage((p) => p + 1)}
-            >
-              {page + 1}
-            </p>
+
+          <div className="flex items-center gap-1">
+            {page > 1 && (
+              <button
+                className="w-8 h-8 rounded-lg text-sm text-neutral-400 hover:bg-primary-50 "
+                onClick={() => setPage(page - 1)}
+              >
+                {toPersianNumber(page - 1)}
+              </button>
+            )}
+
+            <button className="w-8 h-8 rounded-lg text-sm bg-primary-200 text-primary-900 font-bold ">
+              {toPersianNumber(page)}
+            </button>
+
+            {page < totalPages && (
+              <button
+                className="w-8 h-8 rounded-lg text-sm text-neutral-800 hover:bg-primary-50"
+                onClick={() => setPage(page + 1)}
+              >
+                {toPersianNumber(page + 1)}
+              </button>
+            )}
           </div>
+
           <Button
-            variant="outline"
-            size="sm"
+            variant="ghost"
+            size="icon"
+            className="w-8 h-8 rounded-lg hover:bg-gray-100 disabled:opacity-30"
             disabled={page === totalPages}
-            onClick={() => setPage((p) => p + 1)}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
           >
-            بعدی
+            <ChevronLeft className="w-5 h-5 text-gray-500" />
           </Button>
         </div>
       </div>
+
       {selectedUser && isInfoOpen && (
         <InfoModal data={selectedUser} onClose={() => setIsInfoOpen(false)} />
       )}
