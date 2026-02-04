@@ -1,3 +1,5 @@
+"use client"
+
 import { DashboardStat } from "@/app/lib/types/payment";
 import { StatCard } from "./stat-card";
 import { TimeRangeFilter } from "./time-range-filter";

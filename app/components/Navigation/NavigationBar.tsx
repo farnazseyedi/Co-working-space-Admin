@@ -18,7 +18,7 @@ const menuItems: MenuItem[] = [
   { title: "تقویم فضا", href: "/pages/calendar", Icon: Icons.CalendarIconNav },
   { title: "رزروها", href: "/pages/reservations", Icon: Icons.ReservationIcon },
   { title: "امور مالی", href: "/pages/finance", Icon: Icons.CoinIconNav },
-  { title: "مدیریت کاربران", href: "/pages/users", Icon: Icons.MemberIcon },
+  { title: "مدیریت کاربران", href: "/pages/userManagement", Icon: Icons.MemberIcon },
   {
     title: "پیام‌ها",
     href: "/messages",

@@ -173,8 +173,8 @@ export function UsersTable({ data }: UsersTableProps) {
 
       <div className="flex p-4 bg-white">
         <span className="text-sm text-gray-400">
-          {toPersianNumber((page - 1) * pageSize + 1)} -{" "}
-          {toPersianNumber(Math.min(page * pageSize, sortedData.length))}
+          {toPersianNumber(page)} -{" "}
+          {toPersianNumber(totalPages)}
         </span>
 
         <div className="flex items-center justify-center gap-2 flex-1">
@@ -211,7 +211,6 @@ export function UsersTable({ data }: UsersTableProps) {
               </button>
             )}
           </div>
-
           <Button
             variant="ghost"
             size="icon"
@@ -223,7 +222,6 @@ export function UsersTable({ data }: UsersTableProps) {
           </Button>
         </div>
       </div>
-
       {selectedUser && isInfoOpen && (
         <InfoModal data={selectedUser} onClose={() => setIsInfoOpen(false)} />
       )}
