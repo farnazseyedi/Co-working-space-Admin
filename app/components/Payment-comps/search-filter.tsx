@@ -5,22 +5,19 @@ import { Button } from "@/app/components/ui/Button";
 import { Eraser } from "lucide-react";
 
 interface SearchFiltersProps {
-  filters: {
-    userName: string;
+  filters: { 
     fullName: string;
-    price: string;
     fromDate: string;
     toDate: string;
   };
   onFilterChange: (key: string, value: string) => void;
-  onApply: () => void; 
   onReset: () => void;
 }
 
 export function SearchFilters({
   filters,
   onFilterChange,
-  onApply,
+  
   onReset,
 }: SearchFiltersProps) {
   return (
@@ -28,20 +25,11 @@ export function SearchFilters({
       <div className="flex flex-col xl:flex-row gap-6 items-end justify-between">
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full xl:w-auto flex-1">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-neutral-900">
-              نام کاربری
-            </label>
-            <Input
-              value={filters.userName}
-              onChange={(e) => onFilterChange("userName", e.target.value)}
-              className="h-10 border-neutral-400 focus:border-neutral-600 focus:ring-primary rounded-lg"
-            />
-          </div>
+         
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-neutral-900">
-              نام و نام خانوادگی
+             جستجو
             </label>
             <Input
               value={filters.fullName}
@@ -74,22 +62,12 @@ export function SearchFilters({
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-neutral-900">
-              شماره همراه 
-            </label>
-            <Input
-              value={filters.price}
-              onChange={(e) => onFilterChange("price", e.target.value)}
-              className="h-10 border-neutral-400 focus:border-neutral-600 rounded-lg"
-            />
-          </div>
+          
         </div>
 
         <div className="flex items-center gap-3 w-full xl:w-auto justify-end xl:justify-start pt-2">
           <Button
             variant="outline"
-            onClick={onApply}
             className="border-primary-500 text-primary-500 hover:bg-primary-100 px-6 h-10 font-medium"
           >
             اعمال فیلتر

@@ -23,9 +23,7 @@ interface UsersTableProps {
 export function UsersTable({ data }: UsersTableProps) {
   const [page, setPage] = useState(1);
   const pageSize = 5;
-
   const totalPages = Math.ceil(data.length / pageSize);
-
   const paginatedData = useMemo(() => {
     const start = (page - 1) * pageSize;
     return data.slice(start, start + pageSize);

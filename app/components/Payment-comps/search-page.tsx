@@ -16,16 +16,14 @@ import { convertToDate } from "@/app/utils/convertDate";
 export default function SearchPage() {
   const [inputFilters, setInputFilters] = useState({
     fullName: "",
-    userName: "",
-    price: "",
+
     fromDate: "",
     toDate: "",
   });
 
   const [appliedFilters, setAppliedFilters] = useState({
     fullName: "",
-    userName: "",
-    price: "",
+
     fromDate: "",
     toDate: "",
   });
@@ -44,8 +42,7 @@ export default function SearchPage() {
   const handleReset = () => {
     const emptyState = {
       fullName: "",
-      userName: "",
-      price: "",
+
       fromDate: "",
       toDate: "",
     };
@@ -60,13 +57,6 @@ export default function SearchPage() {
       const matchesName =
         !filters.fullName ||
         user.fullName.toLowerCase().includes(filters.fullName.toLowerCase());
-
-      const matchesCode =
-        !filters.userName ||
-        user.userName.toLowerCase().includes(filters.userName.toLowerCase());
-
-      const matchesPrice =
-        !filters.price || String(user.price).includes(String(filters.price));
 
       const userDate = convertToDate(user.date);
       if (!userDate) return false;
@@ -85,13 +75,7 @@ export default function SearchPage() {
         matchesToDate = userDate <= toDate;
       }
 
-      return (
-        matchesName &&
-        matchesCode &&
-        matchesPrice &&
-        matchesToDate &&
-        matchesFromDate
-      );
+      return matchesName && matchesToDate && matchesFromDate;
     });
   }, [appliedFilters]);
 
@@ -110,13 +94,12 @@ export default function SearchPage() {
         <SearchFilters
           filters={inputFilters}
           onFilterChange={handleInputChange}
-          onApply={handleApplyFilter}
           onReset={handleReset}
         />
         <h1 className="text-xl font-bold text-neutral-900">
           لیست آخرین تراکنش‌ها
         </h1>
-        
+
         <UsersTable data={filteredData} onViewDetails={handleViewDetails} />
       </div>
 

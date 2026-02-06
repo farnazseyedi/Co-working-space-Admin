@@ -28,7 +28,7 @@ const menuItems: MenuItem[] = [
       { title: "ایجاد پیام جدید", href: "/pages/sendMessage" },
     ],
   },
-  { title: "تخفیف‌ها", href: "/discounts", Icon: Icons.DiscountIcon },
+  { title: "تخفیف‌ها", href: "/pages/redeem", Icon: Icons.DiscountIcon },
   { title: "مدیریت محتوا", href: "/pages/content", Icon: Icons.GalleryIcon },
 ];
 
