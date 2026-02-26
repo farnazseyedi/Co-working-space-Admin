@@ -27,19 +27,19 @@ export default function SearchPage() {
     setInputFilters(emptyState);
   };
 
-  const handleAddUserSubmit = (data: AddUserFormValues) => {
-    const newUser: UserData = {
-      id: String(users.length + 1),
-      userName: data.userName,
-      fullName: data.fullName,
-      phone: data.phone,
-      status: "فعال",
-      date: new Date().toLocaleDateString("fa-IR"),
-      price: "0",
-    };
-    setUsers([newUser, ...users]);
-    setIsAddModalOpen(false);
-  };
+  // const handleAddUserSubmit = (data: AddUserFormValues) => {
+  //   const newUser: UserData = {
+  //     id: String(users.length + 1),
+  //     userName: data.userName,
+  //     fullName: data.fullName,
+  //     phone: data.phone,
+  //     status: "فعال",
+  //     date: new Date().toLocaleDateString("fa-IR"),
+  //     price: "0",
+  //   };
+  //   setUsers([newUser, ...users]);
+  //   setIsAddModalOpen(false);
+  // };
 
   return (
     <div className="min-h-screen py-8 ">

@@ -16,7 +16,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { title: "پیشخوان", href: "/pages/dashboard", Icon: Icons.PishkhanIcon },
   { title: "تقویم فضا", href: "/pages/calendar", Icon: Icons.CalendarIconNav },
-  { title: "رزروها", href: "/pages/reservations", Icon: Icons.ReservationIcon },
+  { title: "رزروها", href: "/pages/reservation", Icon: Icons.ReservationIcon },
   { title: "امور مالی", href: "/pages/finance", Icon: Icons.CoinIconNav },
   { title: "مدیریت کاربران", href: "/pages/userManagement", Icon: Icons.MemberIcon },
   {

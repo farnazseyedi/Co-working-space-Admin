@@ -10,7 +10,7 @@ export default function redeem() {
    
   // const data = await fetchDiscounts();
   return (
-    <div className="min-h-screen bg-neutral-100" dir="rtl">
+    <div className="min-h-screen bg-neutral-100">
       <NavigatinBar />
       <div className="mr-64 p-6">
         <div className="bg-white flex justify-between items-center px-7 h-16 shadow-sm rounded-lg border-b border-neutral-200 mb-6">
