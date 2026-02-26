@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { MOCK_DATA } from "@/app/services/mock/payment-service";
 import { UserData } from "@/app/services/mock/payment-service";
 import { SearchFilters } from "@/app/components/Payment-comps/search-filter";
@@ -11,19 +11,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/app/components/ui/dialog";
-import { convertToDate } from "@/app/utils/convertDate";
 
 export default function SearchPage() {
   const [inputFilters, setInputFilters] = useState({
     fullName: "",
-
     fromDate: "",
     toDate: "",
   });
-
   const [appliedFilters, setAppliedFilters] = useState({
     fullName: "",
-
     fromDate: "",
     toDate: "",
   });
@@ -35,49 +31,19 @@ export default function SearchPage() {
     setInputFilters((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleApplyFilter = () => {
+  const handleSearch = () => {
     setAppliedFilters(inputFilters);
   };
 
   const handleReset = () => {
     const emptyState = {
       fullName: "",
-
       fromDate: "",
       toDate: "",
     };
     setInputFilters(emptyState);
     setAppliedFilters(emptyState);
   };
-
-  const filteredData = useMemo(() => {
-    return MOCK_DATA.filter((user) => {
-      const filters = appliedFilters;
-
-      const matchesName =
-        !filters.fullName ||
-        user.fullName.toLowerCase().includes(filters.fullName.toLowerCase());
-
-      const userDate = convertToDate(user.date);
-      if (!userDate) return false;
-
-      const fromDate = convertToDate(filters.fromDate);
-      const toDate = convertToDate(filters.toDate);
-
-      let matchesFromDate = true;
-      let matchesToDate = true;
-
-      if (fromDate) {
-        matchesFromDate = userDate >= fromDate;
-      }
-      if (toDate) {
-        toDate.setHours(23, 59, 59);
-        matchesToDate = userDate <= toDate;
-      }
-
-      return matchesName && matchesToDate && matchesFromDate;
-    });
-  }, [appliedFilters]);
 
   const handleViewDetails = (user: UserData) => {
     setSelectedUser(user);
@@ -96,11 +62,11 @@ export default function SearchPage() {
           onFilterChange={handleInputChange}
           onReset={handleReset}
         />
+
         <h1 className="text-xl font-bold text-neutral-900">
           لیست آخرین تراکنش‌ها
         </h1>
-
-        <UsersTable data={filteredData} onViewDetails={handleViewDetails} />
+        <UsersTable data={MOCK_DATA} onViewDetails={handleViewDetails} />
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>

@@ -22,7 +22,7 @@ const CustomTooltip = ({
 }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="relative -top-4">
+      <div className="relative -top-12">
         <div className="bg-[#90D0EB] text-white text-sm font-bold px-3 py-1.5 rounded-lg shadow-sm">
           {toPersianNumber(payload[0].value?.toLocaleString() || "")}
         </div>
@@ -154,7 +154,7 @@ export default function PaymentChart({ data }: PaymentChartProps) {
               width={0}
               domain={[0, yTicks[yTicks.length - 1]]}
             />
-            <Tooltip content={<CustomTooltip />} cursor={false} />
+            <Tooltip content={<CustomTooltip />}  />
             <Area
               type="monotone"
               dataKey="value"

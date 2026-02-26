@@ -19,7 +19,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState, useMemo } from "react";
-import { convertToDate } from "@/app/utils/convertDate";
 import InfoModal from "../Modal/InfoModal";
 import { ReservationData } from "../Modal/InfoModal";
 
@@ -38,31 +37,17 @@ export function UsersTable({ data }: UsersTableProps) {
   const pageSize = 5;
 
   const toggleSort = () => {
-    setSortDir((prev) =>
-      prev === null ? "asc" : prev === "asc" ? "desc" : null,
-    );
+    const nextDir =
+      sortDir === null ? "asc" : sortDir === "asc" ? "desc" : null;
+    setSortDir(nextDir);
   };
 
-  const sortedData = useMemo(() => {
-    if (!sortDir) return data;
-
-    return [...data].sort((a, b) => {
-      const dateA = convertToDate(a.date);
-      const dateB = convertToDate(b.date);
-      if (!dateA || !dateB) return 0;
-
-      return sortDir === "asc"
-        ? dateA.getTime() - dateB.getTime()
-        : dateB.getTime() - dateA.getTime();
-    });
-  }, [data, sortDir]);
-
-  const totalPages = Math.ceil(sortedData.length / pageSize);
+  const totalPages = Math.ceil(data.length / pageSize);
 
   const paginatedData = useMemo(() => {
     const start = (page - 1) * pageSize;
-    return sortedData.slice(start, start + pageSize);
-  }, [sortedData, page]);
+    return data.slice(start, start + pageSize);
+  }, [data, page]);
 
   if (data.length === 0) {
     return (
@@ -71,6 +56,7 @@ export function UsersTable({ data }: UsersTableProps) {
       </div>
     );
   }
+
   return (
     <div className="rounded-xl shadow-sm overflow-hidden bg-white">
       <Table>
@@ -91,30 +77,12 @@ export function UsersTable({ data }: UsersTableProps) {
             >
               <div className="flex items-center gap-2">
                 تاریخ
-                {sortDir === null && (
-                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
-                    <span className="text-xs flex flex-col justify-center pr-0.5">
-                      A-Z
-                    </span>
-                    <ArrowUpDown className="" />
-                  </div>
-                )}
-                {sortDir === "asc" && (
-                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
-                    <span className="text-xs flex flex-col justify-center pr-0.5">
-                      A-Z
-                    </span>
-                    <ArrowUp className="" />
-                  </div>
-                )}
-                {sortDir === "desc" && (
-                  <div className="flex w-12 h-6 bg-others-white1 shadow-sm">
-                    <span className="text-xs flex flex-col justify-center pr-0.5">
-                      A-Z
-                    </span>
-                    <ArrowDown className="" />
-                  </div>
-                )}
+                <div className="flex w-12 h-6 bg-others-white1 shadow-sm items-center justify-center rounded">
+                  <span className="text-xs pr-0.5">A-Z</span>
+                  {sortDir === null && <ArrowUpDown className="w-4 h-4" />}
+                  {sortDir === "asc" && <ArrowUp className="w-4 h-4" />}
+                  {sortDir === "desc" && <ArrowDown className="w-4 h-4" />}
+                </div>
               </div>
             </TableHead>
             <TableHead className="text-center py-4 font-bold text-neutral-900">
@@ -157,7 +125,6 @@ export function UsersTable({ data }: UsersTableProps) {
                       amount: user.price,
                       time: "-",
                     };
-
                     setSelectedUser(modalData);
                     setIsInfoOpen(true);
                   }}
@@ -170,11 +137,9 @@ export function UsersTable({ data }: UsersTableProps) {
           ))}
         </TableBody>
       </Table>
-
-      <div className="flex p-4 bg-white">
+      <div className="flex p-4 bg-white items-center">
         <span className="text-sm text-gray-400">
-          {toPersianNumber(page)} -{" "}
-          {toPersianNumber(totalPages)}
+          {toPersianNumber(page)} - {toPersianNumber(totalPages)}
         </span>
 
         <div className="flex items-center justify-center gap-2 flex-1">
@@ -191,17 +156,15 @@ export function UsersTable({ data }: UsersTableProps) {
           <div className="flex items-center gap-1">
             {page > 1 && (
               <button
-                className="w-8 h-8 rounded-lg text-sm text-neutral-400 hover:bg-primary-50 "
+                className="w-8 h-8 rounded-lg text-sm text-neutral-400 hover:bg-primary-50"
                 onClick={() => setPage(page - 1)}
               >
                 {toPersianNumber(page - 1)}
               </button>
             )}
-
-            <button className="w-8 h-8 rounded-lg text-sm bg-primary-200 text-primary-900 font-bold ">
+            <button className="w-8 h-8 rounded-lg text-sm bg-primary-200 text-primary-900 font-bold">
               {toPersianNumber(page)}
             </button>
-
             {page < totalPages && (
               <button
                 className="w-8 h-8 rounded-lg text-sm text-neutral-800 hover:bg-primary-50"
@@ -211,6 +174,7 @@ export function UsersTable({ data }: UsersTableProps) {
               </button>
             )}
           </div>
+
           <Button
             variant="ghost"
             size="icon"
@@ -222,6 +186,7 @@ export function UsersTable({ data }: UsersTableProps) {
           </Button>
         </div>
       </div>
+
       {selectedUser && isInfoOpen && (
         <InfoModal data={selectedUser} onClose={() => setIsInfoOpen(false)} />
       )}
