@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import copy from "clipboard-copy";
 import { CalendarIcon } from "@/app/assets/icons";

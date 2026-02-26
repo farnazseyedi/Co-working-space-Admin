@@ -1,3 +1,5 @@
+"use client"
+
 import PlusIcon from "../../assets/icons/dashboard/PlusIcon";
 
 type BlueButtonProps = {

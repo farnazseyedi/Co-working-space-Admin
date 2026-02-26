@@ -15,10 +15,10 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { title: "پیشخوان", href: "/pages/dashboard", Icon: Icons.PishkhanIcon },
-  { title: "تقویم فضا", href: "/calendar", Icon: Icons.CalendarIconNav },
-  { title: "رزروها", href: "/reservations", Icon: Icons.ReservationIcon },
-  { title: "امور مالی", href: "/finance", Icon: Icons.CoinIconNav },
-  { title: "مدیریت کاربران", href: "/users", Icon: Icons.MemberIcon },
+  { title: "تقویم فضا", href: "/pages/calendar", Icon: Icons.CalendarIconNav },
+  { title: "رزروها", href: "/pages/reservations", Icon: Icons.ReservationIcon },
+  { title: "امور مالی", href: "/pages/finance", Icon: Icons.CoinIconNav },
+  { title: "مدیریت کاربران", href: "/pages/userManagement", Icon: Icons.MemberIcon },
   {
     title: "پیام‌ها",
     href: "/messages",
@@ -28,7 +28,7 @@ const menuItems: MenuItem[] = [
       { title: "ایجاد پیام جدید", href: "/pages/sendMessage" },
     ],
   },
-  { title: "تخفیف‌ها", href: "/discounts", Icon: Icons.DiscountIcon },
+  { title: "تخفیف‌ها", href: "/pages/redeem", Icon: Icons.DiscountIcon },
   { title: "مدیریت محتوا", href: "/pages/content", Icon: Icons.GalleryIcon },
 ];
 
